@@ -1,10 +1,11 @@
 /** @jsxImportSource theme-ui */
 import { Box, Flex, Heading, ThemeProvider } from 'theme-ui'
-import { defaultTheme } from '../themes/defaultTheme'
+import { defaultTheme } from '../themes/theme'
 
 import { movies } from '../fake-api/index'
 
 import TinderCard from 'react-tinder-card'
+
 import { useState } from 'react';
 
 export function App() {
@@ -32,17 +33,34 @@ export function App() {
   
   return (
     <ThemeProvider theme={defaultTheme}>
-      <Flex sx={{justifyContent: 'center', alignItems: 'center', height: "100vh", width: '100vw'}}>
+      <Flex sx={{justifyContent: 'center',
+       alignItems: 'center',
+        minHeight: "100vh",
+         width: '100vw',
+          textAlign: 'center',
+           overflow: 'hidden',
+            flexDirection: 'column'
+            }}>
       {moviesAPI.map((movie: any) =>
-          <TinderCard key={movie.title} onSwipe={(dir) => swiped(dir, movie.title)} onCardLeftScreen={() => outOfFrame(movie.title)}>
-            <Box sx={{ height: "80vh", width: "80vw",
-              backgroundImage: 'url(' + movie.imageURL + ')', backgroundRepeat: 'no-repeat' }}>
-              <Heading>{movie.title}</Heading>
-            </Box>
-          </TinderCard>
+      <Flex sx={{
+        justifyContent: 'center'
+        }}>
+        <TinderCard key={movie.title} onSwipe={(dir) => swiped(dir, movie.title)} onCardLeftScreen={() => outOfFrame(movie.title)}>
+                    <Box sx={{
+                       height: "80vh",
+                        width: "80vw",
+                         backgroundImage: 'url(' + movie.imageURL + ')',
+                          backgroundRepeat: 'no-repeat'
+                        }}>
+                      <Heading>{movie.title}</Heading>
+                    </Box>
+        </TinderCard>
+      </Flex>
+         
         )}
       </Flex>    
     </ThemeProvider>
   )
 }
 export default App;
+
