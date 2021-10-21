@@ -58,19 +58,21 @@ const MovieTinder = () => {
                         position: "relative",  
                         width: "90vw",
                         maxWidth: "260px",
-                        height: "300px",
+                        height: "290px",
                         backgroundImage: 'url(' + movie.imageURL + ')',                         
-                        backgroundSize: 'cover',
-                        backgroundPosition: "center"
+                        backgroundSize: 'contain',
+                        backgroundColor: 'black',
+                        backgroundPosition: "center",
+                        backgroundRepeat: 'no-repeat',
                         }}>                                         
                     </Flex>
                       <Flex sx={cardBottom}>                            
                             <Paragraph sx={movieSummary} >{movie.summary}</Paragraph>
                             <Flex sx={buttonsWrapper}>
                                 <Button sx={buttonAccept}
-                                        onClick={() => handleAccept(movie.id)}><AiOutlineCheck sx={iconAccept}/> Accept</Button>
+                                        onClick={() => handleAccept(movie.id)}><AiOutlineCheck sx={iconAccept}/>Accept</Button>
                                 <Button sx={buttonDecline}
-                                        onClick={() => handleReject(movie.id)}>Reject <AiOutlineClose sx={iconDecline}/></Button>
+                                        onClick={() => handleReject(movie.id)}>Decline<AiOutlineClose sx={iconDecline}/></Button>
                             </Flex>  
                       </Flex>
         </TinderCard>
@@ -82,6 +84,10 @@ const MovieTinder = () => {
 
 export default MovieTinder;
 
+
+const buttonBackground: string = 'linear-gradient(to right, rgba(35, 37, 38, 0.7) 0%, rgba(65, 67, 69, 0.7)  51%, rgba(35, 37, 38, 0.7)  100%)';
+const buttonClickedBackground: string = 'linear-gradient(to right, rgba(35, 37, 38, 0.9) 0%, rgba(65, 67, 69, 0.9)  51%, rgba(35, 37, 38, 0.9)  100%)';
+const borderRadiusStandard: string = '20px';
 
 const container: any = {
     justifyContent: 'center',
@@ -102,15 +108,22 @@ const cardWrapper: any = {
     
 const tindercard: any = {
     position: 'absolute',
-    top: '10vh'
+    top: 0,
+    "@media (max-width: 780px)": { 
+        top:'20px',              
+      }
 };  
 
 const cardTop: any = {
+    textAlign: 'center',
+    fontSize: '15px',
     padding: 10,
+    height: '60px',
+    overflow: 'hidden',
     maxWidth: '260px',
     backgroundColor: 'black',
     color: 'white',
-    borderTopRightRadius: '20px',
+    borderTopRightRadius: borderRadiusStandard,
     fontWeight: 'bold'
 };
 
@@ -119,14 +132,16 @@ const cardBottom: any = {
     maxWidth: '260px',
     background: 'black',
     color: 'white',
-    borderBottomLeftRadius: '20px' };
+    borderBottomLeftRadius: borderRadiusStandard
+ };
 
 const movieSummary: any = {
-    padding: 10,
-    fontSize: 1,
-    minHeight: '40px',
-    maxHeight: '100px',
-    overflow: 'hidden'
+    padding: "0px 10px",
+    fontSize: "10px",
+    minHeight: '80px',
+    maxHeight: '80px',
+    overflow: 'hidden',
+    marginTop: '10px'
 }; 
 
 const buttonsWrapper: any = {                            
@@ -138,29 +153,35 @@ const buttonsWrapper: any = {
 
 const buttonAccept: any = {
     cursor: 'pointer',
-    background: 'linear-gradient(to right, #232526 0%, #414345  51%, #232526  100%)',
+    background: buttonBackground,
     border: '1px solid green',
     paddingLeft: '10px',
-    borderRadius: '20px',
+    width: '104px',
+    height: '40px',
+    borderTopLeftRadius: borderRadiusStandard,
+    borderBottomRightRadius: borderRadiusStandard,
     '&:hover, &:focus': {  
         backgroundPosition: 'right center', 
         color: '#fff',
         textDecoration: 'none',
-        backgroundColor: 'green'
+        background: buttonClickedBackground
      }
 };   
 
-const buttonDecline: any = {
+const buttonDecline: any = {  
     cursor: 'pointer',
-    background: 'linear-gradient(to right, #232526 0%, #414345  51%, #232526  100%)',
+    background: buttonBackground,
     border: '1px solid red',
     paddingRight: '10px',
-    borderRadius: '20px',
+    width: '104px',
+    height: '40px',
+    borderTopRightRadius: borderRadiusStandard,
+borderBottomLeftRadius: borderRadiusStandard,
     '&:hover, &:focus': {  
         backgroundPosition: 'right center', 
         color: '#fff',
         textDecoration: 'none',
-        backgroundColor: 'red'
+        background: buttonClickedBackground
      }
 };
 
@@ -177,22 +198,4 @@ const iconDecline: any = {
 
 
 
-// .btn-grad {background-image: linear-gradient(to right, #232526 0%, #414345  51%, #232526  100%)}
-// .btn-grad {
-//    margin: 10px;
-//    padding: 15px 45px;
-//    text-align: center;
-//    text-transform: uppercase;
-//    transition: 0.5s;
-//    background-size: 200% auto;
-//    color: white;            
-//    box-shadow: 0 0 20px #eee;
-//    border-radius: 10px;
-//    display: block;
-//  }
 
-//  .btn-grad:hover {
-//    background-position: right center; /* change the direction of the change here */
-//    color: #fff;
-//    text-decoration: none;
-//  }
