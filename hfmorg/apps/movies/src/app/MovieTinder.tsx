@@ -37,6 +37,8 @@ export function MovieTinder() {
         width: "90vw", maxWidth: "260px", height: "300px"
         }}>
         <TinderCard sx={{position: 'absolute', top: '10vh' }} key={movie.title} onSwipe={(dir) => swiped(dir, movie.title)} onCardLeftScreen={() => outOfFrame(movie.title)}>
+        <Paragraph sx={{padding: 10, maxWidth: '260px', backgroundColor: 'black', color: 'white',
+                                 fontWeight: 'bold'}} >{`${movie.title}(${movie.rating}/10)`}</Paragraph>
                     <Flex sx={{position: "relative",
                       width: "90vw", maxWidth: "260px", height: "300px",
                          backgroundImage: 'url(' + movie.imageURL + ')',
@@ -46,13 +48,11 @@ export function MovieTinder() {
                                          
                     </Flex>
                       <Flex sx={{flexDirection: 'column', maxWidth: '260px', background: 'black', color: 'white'}}>
-                            <Paragraph sx={{padding: 10,
-                                 fontWeight: 'bold'}} >{movie.title}</Paragraph>
-                            <Paragraph sx={{paddingBottom: 10,
+                            
+                            <Paragraph sx={{padding: 10, fontSize: 1,
                                  minHeight: '40px',
                                  maxHeight: '100px',
-                                  overflowY: 'scroll'}} >{movie.summary}</Paragraph>
-                            <Heading sx={{position: 'absolute', top: 0, padding: 10, fontSize: 33}}>{`${movie.rating}/10`}</Heading>
+                                  overflow: 'hidden'}} >{movie.summary}</Paragraph>
                             <Flex sx={{                            
                               width: '100%',
                                justifyContent: 'space-around',
