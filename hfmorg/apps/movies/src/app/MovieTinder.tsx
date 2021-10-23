@@ -3,6 +3,8 @@ import { Button, Flex, Paragraph } from 'theme-ui';
 
 import { movies } from '../fake-api/fakeAPI';
 
+import cinema from '../assets/cinema.jpg'
+
 import TinderCard from 'react-tinder-card';
 
 import { useEffect, useState } from 'react';
@@ -55,17 +57,22 @@ const MovieTinder = () => {
                     onCardLeftScreen={() => outOfFrame(movie.title)}>
                     <Paragraph sx={cardTop} >{`${movie.title}(${movie.rating}/10)`}</Paragraph>
                     <Flex sx={{
-                        position: "relative",  
                         width: "90vw",
-                        maxWidth: "260px",
-                        height: "290px",
+                        maxWidth: desktopWidth,
+                        height: "500px",
                         backgroundImage: 'url(' + movie.imageURL + ')',                         
                         backgroundSize: 'contain',
                         backgroundColor: 'black',
                         backgroundPosition: "center",
                         backgroundRepeat: 'no-repeat',
-                        }}>                                         
-                    </Flex>
+                        "@media (max-width: 800px)": { 
+                         height: "360px"             
+                          },
+                          "@media (max-height: 450px)": { 
+                            height: "100px",                                     
+                             }
+                        }}> 
+                   </Flex>
                       <Flex sx={cardBottom}>                            
                             <Paragraph sx={movieSummary} >{movie.summary}</Paragraph>
                             <Flex sx={buttonsWrapper}>
@@ -88,6 +95,7 @@ export default MovieTinder;
 const buttonBackground: string = 'linear-gradient(to right, rgba(35, 37, 38, 0.7) 0%, rgba(65, 67, 69, 0.7)  51%, rgba(35, 37, 38, 0.7)  100%)';
 const buttonClickedBackground: string = 'linear-gradient(to right, rgba(35, 37, 38, 0.9) 0%, rgba(65, 67, 69, 0.9)  51%, rgba(35, 37, 38, 0.9)  100%)';
 const borderRadiusStandard: string = '20px';
+const desktopWidth: string = '300px';
 
 const container: any = {
     justifyContent: 'center',
@@ -97,20 +105,28 @@ const container: any = {
     textAlign: 'center',
     overflow: 'hidden',
     flexDirection: 'column',
-    backgroundColor: 'green'
+    backgroundColor: '#fff', 
+    "@media (min-width: 800px)": { 
+     flexDirection: 'row',
+     flexWrap: 'wrap',  
+     alignItems: 'flex-start',  
+      }
 };
 
 const cardWrapper: any = {
     width: "90vw",
-    maxWidth: "260px",
-    height: "300px"
+    maxWidth: desktopWidth,
+    height: "580px",
+    margin: 10,
 };   
     
-const tindercard: any = {
-    position: 'absolute',
-    top: 0,
-    "@media (max-width: 780px)": { 
-        top:'20px',              
+const tindercard: any = {    
+    display: 'flex',
+    flexDirection: 'column',   
+    "@media (max-width: 800px)": { 
+        position: 'absolute',
+        top:'20px', 
+        zIndex: 10             
       }
 };  
 
@@ -120,7 +136,7 @@ const cardTop: any = {
     padding: 10,
     height: '60px',
     overflow: 'hidden',
-    maxWidth: '260px',
+    maxWidth: desktopWidth,
     backgroundColor: 'black',
     color: 'white',
     borderTopRightRadius: borderRadiusStandard,
@@ -129,7 +145,7 @@ const cardTop: any = {
 
 const cardBottom: any = {
     flexDirection: 'column',
-    maxWidth: '260px',
+    maxWidth: desktopWidth,
     background: 'black',
     color: 'white',
     borderBottomLeftRadius: borderRadiusStandard
