@@ -5,13 +5,11 @@ import { defaultTheme } from '../themes/theme';
 import MovieTinder from './MovieTinder';
 
 export function App() {
-  
   return (
     <ThemeProvider theme={defaultTheme}>
-      <MovieTinder /> 
+      <MovieTinder />
     </ThemeProvider>
-  )
-};
+  );
+}
 
 export default App;
-
