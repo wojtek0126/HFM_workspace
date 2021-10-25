@@ -16,22 +16,18 @@ interface Movies {
   title: string;
   summary: string;
   rating: number;
+  accept: boolean,
+  reject: boolean
 }
 
 const MovieTinder = () => {
-  const moviesAPI: Movies[] = movies;
+  // const moviesAPI: Movies[] = movies;
   const [lastDirection, setLastDirection] = useState();
-  const api: string = '/api/movies';
+  const api: string = '/api/movies/2';
 
     const [allMovies, setAllMovies] = useState<Movies[] | null>();
 
-    useEffect(() => {
-  //    fetch('/api/movies', {
-  //     mode: 'cors'
-  // })
-  //    .then((_) => _.json)
-  //    .then((data: any) => console.log(data))
-  //     //  console.log(allMovies, " movies from api")
+    useEffect(() => {  
       fetchData( setAllMovies, api);
     }, []);
 
@@ -54,7 +50,47 @@ const MovieTinder = () => {
       });
           }; 
 
+          async function updatePutMovies(id: string) {   
+            await fetch(`/api/movies/${id}`, {
+                mode: "cors",
+                method: "PUT",
+                 headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({accepted: true})
+            })
+            .then(response => {
+                return response.json();        
+            })
+            .then(data => {        
+                data
+            })
+            .catch(error => {
+                console.log(error);
+            });
+                }; 
+                
+                
+
+                // const updateTask = (setCallback: Movies, API: string, ) => {
+                //   fetch(`${API}/${id}`, {
+                //     headers: {
+                //       Authorization: `Bearer ${API_TOKEN}`,
+                //       'Content-Type': 'application/json',
+                //     },
+                //     method: 'PUT',
+                //     body: JSON.stringify(modified),
+                //   })
+                //     .then((r) => r.json())
+                //     .then((data) => {
+                //       if (data.error === false && typeof successCallback === 'function') {
+                //         successCallback(data.data)
+                //       }
+                //     })
+                //     .catch((err) => console.log(err))
+                // };
+
   const handleAccept = (id: string) => {
+    const modified = {accept: true, reject: false};
+    updatePutMovies(id);
     console.log(`movie with id ${id} accepted by user`);
   };
 
