@@ -121,10 +121,10 @@ export function addSingleMovieRoute(app: Express) {
     app.get('/api/movies/:id', (req,resp) => resp.send(getMovie(req.params.id)));   
 }; 
 
-export function addSingleMovieRouteAccept(app: Express) {
-    app.get('/api/movies/:id/accepted', (req,resp) => resp.send(getMovie(req.params.id)));   
-};
+// export function addSingleMovieRouteAccept(app: Express) {
+//     app.get('/api/movies/:id/accepted', (req,resp) => resp.send(getMovie(req.params.id)));   
+// };
 
-export function addSingleMovieRouteReject(app: Express) {
-    app.get('/api/movies/:id/rejected', (req,resp) => resp.send(getMovie(req.params.id)));   
-};
+// export function addSingleMovieRouteReject(app: Express) {
+//     app.get('/api/movies/:id/rejected', (req,resp) => resp.send(getMovie(req.params.id)));   
+// };
