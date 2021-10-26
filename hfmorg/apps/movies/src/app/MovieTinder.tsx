@@ -95,7 +95,7 @@ const MovieTinder = () => {
 
 
   return (<>
-    <Flex sx={{alignItems: 'center', justifyContent: 'center', padding: 15, fontSize: 40, backgroundColor: 'gold'}}>ChozzAndWatch</Flex>
+    <Flex sx={titleContainer}>ChozzAndWatch</Flex>
 
     <Flex sx={container}>
       {allMovies && allMovies!.map((movie: any) => (
@@ -160,6 +160,14 @@ const buttonClickedBackground: string =
   'linear-gradient(to right, rgba(35, 37, 38, 0.9) 0%, rgba(65, 67, 69, 0.9)  51%, rgba(35, 37, 38, 0.9)  100%)';
 const borderRadiusStandard: string = '20px';
 const desktopWidth: string = '300px';
+
+const titleContainer: any = {
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 15,
+    fontSize: 40,
+    backgroundColor: 'gold'
+    };
 
 const container: any = {
   position: 'relative',
