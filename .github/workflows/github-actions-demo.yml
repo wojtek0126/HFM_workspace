@@ -1,21 +1,23 @@
       name: GitHub Actions Demo
-      on: [push]
-      jobs:
-      Explore-GitHub-Actions:
-      runs-on: windows-latest    
-              
-      steps:
+          branches: [main]jobs:
+  build:
+    runs-on: windows-latest
+    strategy:
+      matrix:
+        node-version: [12.x]
+    steps:
       - uses: actions/checkout@v2
-      with:
-      fetch-depth: 0    
-      uses: actions/setup-node@v1
-      with:
-      node-version: ${{ matrix.node-version }}
+        with:
+          fetch-depth: 0
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
       - run: git fetch origin main
       - run: npm install
       - name: Run Affected Tests
-      shell: bash
-      run: npm run affected:test -- --base=remotes/origin/main
+        shell: bash
+        run: npm run affected:test -- --base=remotes/origin/main
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
       - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
       - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
