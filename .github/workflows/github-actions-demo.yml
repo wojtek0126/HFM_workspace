@@ -1,21 +1,18 @@
-name: github-actions-demo:
-  pull_request:
-    branches: [main]jobs:
-  build:
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [12.x]
-    steps:
-      - uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
-        with:
-          node-version: ${{ matrix.node-version }}
-      - run: git fetch origin main
-      - run: npm install
-      - name: Run Affected Tests
-        shell: bash
-        run: npm run affected:test -- --base=remotes/origin/main
+name: GitHub Actions Demo
+on: [push]
+jobs:
+Explore-GitHub-Actions:
+runs-on: windows-latest    
+        
+steps:
+- uses: actions/checkout@v2
+with:
+fetch-depth: 0    
+uses: actions/setup-node@v1
+with:
+node-version: ${{ matrix.node-version }}
+- run: git fetch origin main
+- run: npm install
+- name: Run Affected Tests
+shell: bash
+run: npm run affected:test -- --base=remotes/origin/main
