@@ -18,7 +18,7 @@ interface Movies {
 
 const MovieTinder = () => {
   const [lastDirection, setLastDirection] = useState();
-  const api: string = '/api/movies';
+  const api = '/api/movies';
 
     const [allMovies, setAllMovies] = useState<Movies[] | null>();
 
@@ -46,7 +46,7 @@ const MovieTinder = () => {
           }; 
           
    
-          async function updateMovies(API: string, id: string, data: any) {   
+          async function updateMovies(API: string, id: string, data: Movies) {   
             await fetch(`${API}/${id}`, {
                 mode: "cors",
                 method: "PUT",
