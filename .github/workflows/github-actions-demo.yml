@@ -14,4 +14,6 @@ jobs:
       - name: List files in the repository
         run: |
           ls ${{ github.workspace }}
+      - run: nx run movies:test    
+      - run: nx run movies:lint      
       - run: echo "🍏 This job's status is ${{ job.status }}."
