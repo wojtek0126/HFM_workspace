@@ -1,23 +1,25 @@
 import { Express } from 'express';
 
-interface Movies {
+export interface Movies {
     id: string;
     imageURL: string;
     title: string;
     summary: string;
     rating: number;
+    accepted?: boolean,
+    rejected?: boolean;
 };
 
 const movies: Movies[] =[
     {
-    id: "1and3011",
+    id: "1",
     imageURL: "https://images-na.ssl-images-amazon.com/images/M/MV5BMTUzNTE2NTkzMV5BMl5BanBnXkFtZTgwMDAzOTUyMDI@._V1_SY1000_CR0,0,674,1000_AL_.jpg",
     title: "Inferno",
     summary: "Lorem ipsum....",
     rating: 5.3
 },
     {
-    id: "2301abc",
+    id: "2",
     imageURL: "https://images-na.ssl-images-amazon.com/images/M/MV5BOTAzODEzNDAzMl5BMl5BanBnXkFtZTgwMDU1MTgzNzE@._V1_SY1000_CR0,0,677,1000_AL_.jpg",    
     title: "Star Wars: Episode VII - The Force Awakens",
     summary: "= runtime.js runtime.js.map polyfills.js polyfills.js.mapEntrypoint styles [big] = runtime.js runtime.js.map styles.js\
@@ -25,7 +27,7 @@ const movies: Movies[] =[
     rating: 8.2
 },
 {
-    id: "2301abd",
+    id: "3",
     imageURL: "https://images-na.ssl-images-amazon.com/images/M/MV5BOTAzODEzNDAzMl5BMl5BanBnXkFtZTgwMDU1MTgzNzE@._V1_SY1000_CR0,0,677,1000_AL_.jpg",    
     title: "Star Wars: Episode VII - The Force Awakens",
     summary: "= runtime.js runtime.js.map polyfills.js polyfills.js.mapEntrypoint styles [big] = runtime.js runtime.js.map styles.js\
@@ -33,7 +35,7 @@ const movies: Movies[] =[
     rating: 8.2
 },
 {
-    id: "2301apc",
+    id: "4",
     imageURL: "https://images-na.ssl-images-amazon.com/images/M/MV5BOTAzODEzNDAzMl5BMl5BanBnXkFtZTgwMDU1MTgzNzE@._V1_SY1000_CR0,0,677,1000_AL_.jpg",    
     title: "Star Wars: Episode VII - The Force Awakens",
     summary: "= runtime.js runtime.js.map polyfills.js polyfills.js.mapEntrypoint styles [big] = runtime.js runtime.js.map styles.js\
@@ -41,7 +43,7 @@ const movies: Movies[] =[
     rating: 8.2
 },
 {
-    id: "2301aoc",
+    id: "5",
     imageURL: "https://images-na.ssl-images-amazon.com/images/M/MV5BOTAzODEzNDAzMl5BMl5BanBnXkFtZTgwMDU1MTgzNzE@._V1_SY1000_CR0,0,677,1000_AL_.jpg",    
     title: "Star Wars: Episode VII - The Force Awakens",
     summary: "= runtime.js runtime.js.map polyfills.js polyfills.js.mapEntrypoint styles [big] = runtime.js runtime.js.map styles.js\
@@ -49,7 +51,7 @@ const movies: Movies[] =[
     rating: 8.2
 },
 {
-    id: "2301afc",
+    id: "6",
     imageURL: "https://images-na.ssl-images-amazon.com/images/M/MV5BOTAzODEzNDAzMl5BMl5BanBnXkFtZTgwMDU1MTgzNzE@._V1_SY1000_CR0,0,677,1000_AL_.jpg",    
     title: "Star Wars: Episode VII - The Force Awakens",
     summary: "= runtime.js runtime.js.map polyfills.js polyfills.js.mapEntrypoint styles [big] = runtime.js runtime.js.map styles.js\
@@ -57,7 +59,7 @@ const movies: Movies[] =[
     rating: 8.2
 },
 {
-    id: "2301abl",
+    id: "7",
     imageURL: "https://images-na.ssl-images-amazon.com/images/M/MV5BOTAzODEzNDAzMl5BMl5BanBnXkFtZTgwMDU1MTgzNzE@._V1_SY1000_CR0,0,677,1000_AL_.jpg",    
     title: "Star Wars: Episode VII - The Force Awakens",
     summary: "= runtime.js runtime.js.map polyfills.js polyfills.js.mapEntrypoint styles [big] = runtime.js runtime.js.map styles.js\
@@ -65,7 +67,7 @@ const movies: Movies[] =[
     rating: 8.2
 },
 {
-    id: "2301abn",
+    id: "8",
     imageURL: "https://images-na.ssl-images-amazon.com/images/M/MV5BOTAzODEzNDAzMl5BMl5BanBnXkFtZTgwMDU1MTgzNzE@._V1_SY1000_CR0,0,677,1000_AL_.jpg",    
     title: "Star Wars: Episode VII - The Force Awakens",
     summary: "= runtime.js runtime.js.map polyfills.js polyfills.js.mapEntrypoint styles [big] = runtime.js runtime.js.map styles.js\
@@ -73,7 +75,7 @@ const movies: Movies[] =[
     rating: 8.2
 },
 {
-    id: "2301abm",
+    id: "9",
     imageURL: "https://images-na.ssl-images-amazon.com/images/M/MV5BOTAzODEzNDAzMl5BMl5BanBnXkFtZTgwMDU1MTgzNzE@._V1_SY1000_CR0,0,677,1000_AL_.jpg",    
     title: "Star Wars: Episode VII - The Force Awakens",
     summary: "= runtime.js runtime.js.map polyfills.js polyfills.js.mapEntrypoint styles [big] = runtime.js runtime.js.map styles.js\
@@ -81,7 +83,7 @@ const movies: Movies[] =[
     rating: 8.2
 },
 {
-    id: "2301abs",
+    id: "10",
     imageURL: "https://images-na.ssl-images-amazon.com/images/M/MV5BOTAzODEzNDAzMl5BMl5BanBnXkFtZTgwMDU1MTgzNzE@._V1_SY1000_CR0,0,677,1000_AL_.jpg",    
     title: "Star Wars: Episode VII - The Force Awakens",
     summary: "= runtime.js runtime.js.map polyfills.js polyfills.js.mapEntrypoint styles [big] = runtime.js runtime.js.map styles.js\
@@ -89,7 +91,7 @@ const movies: Movies[] =[
     rating: 8.2
 },
 {
-    id: "2301abv",
+    id: "11",
     imageURL: "https://images-na.ssl-images-amazon.com/images/M/MV5BOTAzODEzNDAzMl5BMl5BanBnXkFtZTgwMDU1MTgzNzE@._V1_SY1000_CR0,0,677,1000_AL_.jpg",    
     title: "Star Wars: Episode VII - The Force Awakens",
     summary: "= runtime.js runtime.js.map polyfills.js polyfills.js.mapEntrypoint styles [big] = runtime.js runtime.js.map styles.js\
@@ -97,16 +99,27 @@ const movies: Movies[] =[
     rating: 8.2
 },
 {
-    id: "2309abc",
+    id: "12",
     imageURL: "https://images-na.ssl-images-amazon.com/images/M/MV5BOTAzODEzNDAzMl5BMl5BanBnXkFtZTgwMDU1MTgzNzE@._V1_SY1000_CR0,0,677,1000_AL_.jpg",    
     title: "Star Wars: Episode VII - The Force Awakens",
     summary: "= runtime.js runtime.js.map polyfills.js polyfills.js.mapEntrypoint styles [big] = runtime.js runtime.js.map styles.js\
      styles.js.map chunk {main} main.js, main.b7a9c823517dec8a5bd0.hot-update.js, main.j",
     rating: 8.2
 },
-    ]
+    ];
 
+
+const getMovie = (id: string) => movies.find((movie: any) => movie.id === id);    
+
+    
 export function addMoviesRoutes(app: Express) {
-    app.get('/api/movies', (req,resp) => resp.send(movies));
-    // app.post('/api/movies', (req,resp) => resp.)
-}    
+    app.get('/api/movies', (req,resp) => resp.send(movies));   
+};   
+
+export function addSingleMovieRoute(app: Express) {
+    app.get('/api/movies/:id', (req,resp) => resp.send(getMovie(req.params.id)));   
+}; 
+
+export function putSingleMovieRoute(app: Express) {
+    app.put('/api/movies/:id', (req,resp) => resp.send(getMovie(req.params.id)));   
+}; 

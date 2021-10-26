@@ -1,4 +1,4 @@
-import type { Theme } from 'theme-ui'
+import type { Theme } from 'theme-ui';
 
 export const defaultTheme: Theme = {
   fonts: {
@@ -11,4 +11,4 @@ export const defaultTheme: Theme = {
     background: '#fff',
     primary: '#33e',
   },
-}
+};
