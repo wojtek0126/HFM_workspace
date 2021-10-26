@@ -16,6 +16,10 @@ interface Movies {
   reject?: boolean
 };
 
+type Styles = {
+  [key: string]: any;
+};
+
 const MovieTinder = () => {
   const [lastDirection, setLastDirection] = useState();
   const api = '/api/movies';
@@ -161,7 +165,7 @@ const buttonClickedBackground: string =
 const borderRadiusStandard: string = '20px';
 const desktopWidth: string = '300px';
 
-const titleContainer: any = {
+const titleContainer: Styles = {
     alignItems: 'center',
     justifyContent: 'center',
     padding: 15,
@@ -169,7 +173,7 @@ const titleContainer: any = {
     backgroundColor: 'gold'
     };
 
-const container: any = {
+const container: Styles = {
   position: 'relative',
   justifyContent: 'center',
   alignItems: 'center',
@@ -186,14 +190,14 @@ const container: any = {
   },
 };
 
-const cardWrapper: any = {
+const cardWrapper: Styles = {
   width: '90vw',
   maxWidth: desktopWidth,
   height: '580px',
   margin: 10,
 };
 
-const tindercard: any = {
+const tindercard: Styles = {
   display: 'flex',
   flexDirection: 'column',
   '@media (max-width: 800px)': {
@@ -203,7 +207,7 @@ const tindercard: any = {
   },
 };
 
-const cardTop: any = {
+const cardTop: Styles = {
   textAlign: 'center',
   fontSize: '15px',
   padding: 10,
@@ -216,7 +220,7 @@ const cardTop: any = {
   fontWeight: 'bold',
 };
 
-const cardBottom: any = {
+const cardBottom: Styles = {
   flexDirection: 'column',
   maxWidth: desktopWidth,
   background: 'black',
@@ -224,7 +228,7 @@ const cardBottom: any = {
   borderBottomLeftRadius: borderRadiusStandard,
 };
 
-const movieSummary: any = {
+const movieSummary: Styles = {
   padding: '0px 10px',
   fontSize: '10px',
   minHeight: '80px',
@@ -233,7 +237,7 @@ const movieSummary: any = {
   marginTop: '10px',
 };
 
-const buttonsWrapper: any = {
+const buttonsWrapper: Styles = {
   width: '100%',
   justifyContent: 'space-around',
   padding: '10px',
@@ -257,7 +261,7 @@ const buttonAccept: any = {
   },
 };
 
-const buttonDecline: any = {
+const buttonDecline: Styles = {
   cursor: 'pointer',
   background: buttonBackground,
   border: '1px solid red',
@@ -274,12 +278,12 @@ const buttonDecline: any = {
   },
 };
 
-const iconAccept: any = {
+const iconAccept: Styles = {
   paddingTop: 1,
   color: 'green',
 };
 
-const iconDecline: any = {
+const iconDecline: Styles = {
   paddingTop: 1,
   color: 'red',
 };
