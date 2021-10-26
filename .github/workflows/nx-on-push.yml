@@ -15,6 +15,8 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - run: git fetch origin main
+      - run: cd hfmorg
+      - run: ls
       - run: npm install
       - name: Run Affected Tests
         shell: bash
