@@ -100,7 +100,6 @@ const MovieTinder = () => {
 
   return (<>
     <Flex sx={titleContainer}>ChozzAndWatch</Flex>
-
     <Flex sx={container}>
       {allMovies && allMovies!.map((movie: any) => (
         <Flex sx={cardWrapper} key={movie.id}>
