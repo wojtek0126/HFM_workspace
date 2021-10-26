@@ -1,10 +1,6 @@
 /** @jsxImportSource theme-ui */
 import { Button, Flex, Paragraph } from 'theme-ui';
 
-import { movies } from '../fake-api/fakeAPI';
-
-// import cinema from '../assets/cinema.jpg';
-
 import TinderCard from 'react-tinder-card';
 
 import { useEffect, useState } from 'react';
@@ -16,14 +12,13 @@ interface Movies {
   title: string;
   summary: string;
   rating: number;
-  accept: boolean,
-  reject: boolean
-}
+  accept?: boolean,
+  reject?: boolean
+};
 
 const MovieTinder = () => {
-  // const moviesAPI: Movies[] = movies;
   const [lastDirection, setLastDirection] = useState();
-  const api: string = '/api/movies/2';
+  const api: string = '/api/movies';
 
     const [allMovies, setAllMovies] = useState<Movies[] | null>();
 
@@ -49,53 +44,40 @@ const MovieTinder = () => {
           console.log(error);
       });
           }; 
-
-          async function updatePutMovies(id: string) {   
-            await fetch(`/api/movies/${id}`, {
+          
+   
+          async function updateMovies(API: string, id: string, data: any) {   
+            await fetch(`${API}/${id}`, {
                 mode: "cors",
                 method: "PUT",
                  headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({accepted: true})
+            body: JSON.stringify(data)
             })
             .then(response => {
                 return response.json();        
             })
             .then(data => {        
-                data
+                return data;
             })
             .catch(error => {
                 console.log(error);
             });
                 }; 
-                
-                
 
-                // const updateTask = (setCallback: Movies, API: string, ) => {
-                //   fetch(`${API}/${id}`, {
-                //     headers: {
-                //       Authorization: `Bearer ${API_TOKEN}`,
-                //       'Content-Type': 'application/json',
-                //     },
-                //     method: 'PUT',
-                //     body: JSON.stringify(modified),
-                //   })
-                //     .then((r) => r.json())
-                //     .then((data) => {
-                //       if (data.error === false && typeof successCallback === 'function') {
-                //         successCallback(data.data)
-                //       }
-                //     })
-                //     .catch((err) => console.log(err))
-                // };
-
-  const handleAccept = (id: string) => {
-    const modified = {accept: true, reject: false};
-    updatePutMovies(id);
-    console.log(`movie with id ${id} accepted by user`);
+  const handleAccept = (id: string, movie: any) => {
+    let acceptData: any = { ...movie,
+    accepted: true, 
+    rejected: false 
+  };  
+    updateMovies(api, id, acceptData);
   };
 
-  const handleReject = (id: string) => {
-    console.log(`movie with id ${id} rejected by user`);
+  const handleReject = (id: string, movie: any) => {
+    let rejectData: any = { ...movie,
+      accepted: false, 
+      rejected: true 
+    };  
+      updateMovies(api, id, rejectData);
   };
 
   const swiped = (direction: any, nameToDelete: any) => {
@@ -103,20 +85,25 @@ const MovieTinder = () => {
     setLastDirection(direction);
   };
 
-  const outOfFrame = (name: any) => {
-    console.log(name + ' left the screen!');
+  const outOfFrame = (id: any, movie: any) => {
+    let rejectData: any = { ...movie,
+      accepted: false, 
+      rejected: true 
+    };  
+      updateMovies(api, id, rejectData);
   };
 
-  // console.log(allMovies, " movies from api")
 
-  return (
+  return (<>
+    <Flex sx={{alignItems: 'center', justifyContent: 'center', padding: 15, fontSize: 40, backgroundColor: 'gold'}}>ChozzAndWatch</Flex>
+
     <Flex sx={container}>
       {allMovies && allMovies!.map((movie: any) => (
         <Flex sx={cardWrapper} key={movie.id}>
           <TinderCard
             sx={tindercard}            
             onSwipe={(dir) => swiped(dir, movie.title)}
-            onCardLeftScreen={() => outOfFrame(movie.title)}
+            onCardLeftScreen={() => outOfFrame(movie.id, movie)}
           >
             <Paragraph
               sx={cardTop}
@@ -144,14 +131,14 @@ const MovieTinder = () => {
               <Flex sx={buttonsWrapper}>
                 <Button
                   sx={buttonAccept}
-                  onClick={() => handleAccept(movie.id)}
+                  onClick={() => handleAccept(movie.id, movie)}
                 >
                   <AiOutlineCheck sx={iconAccept} />
                   Accept
                 </Button>
                 <Button
                   sx={buttonDecline}
-                  onClick={() => handleReject(movie.id)}
+                  onClick={() => handleReject(movie.id, movie)}
                 >
                   Decline
                   <AiOutlineClose sx={iconDecline} />
@@ -162,7 +149,7 @@ const MovieTinder = () => {
         </Flex>
       ))}
     </Flex>
-  );
+  </>);
 };
 
 export default MovieTinder;
@@ -175,6 +162,7 @@ const borderRadiusStandard: string = '20px';
 const desktopWidth: string = '300px';
 
 const container: any = {
+  position: 'relative',
   justifyContent: 'center',
   alignItems: 'center',
   minHeight: '100vh',
@@ -182,7 +170,7 @@ const container: any = {
   textAlign: 'center',
   overflow: 'hidden',
   flexDirection: 'column',
-  backgroundColor: '#fff',
+  backgroundColor: 'darkgoldenrod',
   '@media (min-width: 800px)': {
     flexDirection: 'row',
     flexWrap: 'wrap',
@@ -202,7 +190,7 @@ const tindercard: any = {
   flexDirection: 'column',
   '@media (max-width: 800px)': {
     position: 'absolute',
-    top: '20px',
+    top: 10,
     zIndex: 10,
   },
 };

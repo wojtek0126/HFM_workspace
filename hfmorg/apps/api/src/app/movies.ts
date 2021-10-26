@@ -6,6 +6,8 @@ export interface Movies {
     title: string;
     summary: string;
     rating: number;
+    accepted?: boolean,
+    rejected?: boolean;
 };
 
 const movies: Movies[] =[
@@ -106,12 +108,9 @@ const movies: Movies[] =[
 },
     ];
 
-const accepted: any = [];
 
-const rejected: any = [];  
+const getMovie = (id: string) => movies.find((movie: any) => movie.id === id);    
 
-export const getAllMovies = () => movies;
-export const getMovie = (id: string) => movies.find((movie: any) => movie.id === id);    
     
 export function addMoviesRoutes(app: Express) {
     app.get('/api/movies', (req,resp) => resp.send(movies));   
@@ -121,10 +120,6 @@ export function addSingleMovieRoute(app: Express) {
     app.get('/api/movies/:id', (req,resp) => resp.send(getMovie(req.params.id)));   
 }; 
 
-// export function addSingleMovieRouteAccept(app: Express) {
-//     app.get('/api/movies/:id/accepted', (req,resp) => resp.send(getMovie(req.params.id)));   
-// };
-
-// export function addSingleMovieRouteReject(app: Express) {
-//     app.get('/api/movies/:id/rejected', (req,resp) => resp.send(getMovie(req.params.id)));   
-// };
+export function putSingleMovieRoute(app: Express) {
+    app.put('/api/movies/:id', (req,resp) => resp.send(getMovie(req.params.id)));   
+}; 

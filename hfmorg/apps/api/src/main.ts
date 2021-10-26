@@ -4,17 +4,16 @@
  */
 
  import * as express from 'express';
- import { addMoviesRoutes, addSingleMovieRoute } from './app/movies';
+ import { addMoviesRoutes, addSingleMovieRoute, putSingleMovieRoute } from './app/movies';
  
  const app = express();
  
  app.get('/api', (req, res) => {
    res.send({ message: 'Hello hello' });
- });
+ }); 
  addMoviesRoutes(app);
  addSingleMovieRoute(app);
-//  addSingleMovieRouteAccept(app);
-//  addSingleMovieRouteReject(app);
+ putSingleMovieRoute(app);
  
  const port = process.env.port || 3333;
  const server = app.listen(port, () => {
