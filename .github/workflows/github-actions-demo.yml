@@ -16,6 +16,6 @@ jobs:
         run: |
           ls ${{ github.workspace }}         
       - run: npm install    
-      - run: nx run movies:test    
-      - run: nx run movies:lint      
+      - run: npx nx run movies:test    
+      - run: npx nx run movies:lint      
       - run: echo "🍏 This job's status is ${{ job.status }}."
