@@ -25,5 +25,5 @@ jobs:
       - name: Run Affected Tests
         shell: bash
         run: npm run affected:test -- --base=remotes/origin/main
-      - run: npx nx test Movies
-      - run: npx nx lint movies  
+      - run: npm run test Movies
+      - run: npm run lint movies  
