@@ -1,4 +1,5 @@
 /** @jsxImportSource theme-ui */
+import { ThemeUICSSObject } from 'theme-ui'
 import { Button, Flex, Paragraph } from 'theme-ui';
 
 import TinderCard from 'react-tinder-card';
@@ -12,13 +13,10 @@ interface Movies {
   title: string;
   summary: string;
   rating: number;
-  accept?: boolean,
-  reject?: boolean
+  accepted?: boolean,
+  rejected?: boolean
 };
 
-type Styles = {
-  [key: string]: any;
-};
 
 const MovieTinder = () => {
   const [lastDirection, setLastDirection] = useState<string | null>();
@@ -30,7 +28,7 @@ const MovieTinder = () => {
       fetchData( setAllMovies, api);
     }, []);
 
-    async function fetchData(setCallback: any, API: string) {   
+    async function fetchData(setCallback: React.Dispatch<React.SetStateAction<Movies[] | null | undefined>>, API: string) {   
       await fetch(API, {
           mode: "cors",
           method: "GET",
@@ -41,7 +39,7 @@ const MovieTinder = () => {
       .then(response => {
           return response.json();        
       })
-      .then(data => {        
+      .then(data => {  
           setCallback(data);
       })
       .catch(error => {
@@ -68,42 +66,41 @@ const MovieTinder = () => {
             });
                 }; 
 
-  const handleAccept = (id: string, movie: any) => {
-    let acceptData: any = { ...movie,
+  const handleAccept = (id: string, movie: Movies) => {
+    const acceptData: Movies = { ...movie,
     accepted: true, 
     rejected: false 
   };  
     updateMovies(api, id, acceptData);
   };
 
-  const handleReject = (id: string, movie: any) => {
-    const rejectData: any = { ...movie,
+  const handleReject = (id: string, movie: Movies) => {
+    const rejectData: Movies = { ...movie,
       accepted: false, 
       rejected: true 
     };  
       updateMovies(api, id, rejectData);
   };
 
-  const swiped = (direction: string, nameToDelete: any) => {
+  const swiped = (direction: string, nameToDelete: string) => {
     console.log('removing: ' + nameToDelete);
     setLastDirection(direction);
   };
 
-  const outOfFrame = (id: any, movie: any) => {
-    const rejectData: any = { ...movie,
+  const outOfFrame = (id: string, movie: Movies) => {
+    const rejectData: Movies = { ...movie,
       accepted: false, 
       rejected: true 
     };  
       updateMovies(api, id, rejectData);
   };
 
-  console.log(typeof(lastDirection), 'lastdireslint');
 
   return (<>
     <Flex sx={titleContainer}>ChozzAndWatch</Flex>
 
     <Flex sx={container}>
-      {allMovies && allMovies.map((movie: any) => (
+      {allMovies && allMovies.map((movie: Movies) => (
         <Flex sx={cardWrapper} key={movie.id}>
           <TinderCard
             sx={tindercard}            
@@ -166,7 +163,7 @@ const buttonClickedBackground =
 const borderRadiusStandard = '20px';
 const desktopWidth = '300px';
 
-const titleContainer: Styles = {
+const titleContainer: ThemeUICSSObject = {
     alignItems: 'center',
     justifyContent: 'center',
     padding: 15,
@@ -174,7 +171,7 @@ const titleContainer: Styles = {
     backgroundColor: 'gold'
     };
 
-const container: Styles = {
+const container: ThemeUICSSObject = {
   position: 'relative',
   justifyContent: 'center',
   alignItems: 'center',
@@ -191,14 +188,14 @@ const container: Styles = {
   },
 };
 
-const cardWrapper: Styles = {
+const cardWrapper: ThemeUICSSObject = {
   width: '90vw',
   maxWidth: desktopWidth,
   height: '580px',
   margin: 10,
 };
 
-const tindercard: Styles = {
+const tindercard: ThemeUICSSObject = {
   display: 'flex',
   flexDirection: 'column',
   padding: "25px 0",
@@ -209,7 +206,7 @@ const tindercard: Styles = {
   },
 };
 
-const cardTop: Styles = {
+const cardTop: ThemeUICSSObject = {
   textAlign: 'center',
   fontSize: '15px',
   padding: 10,
@@ -222,7 +219,7 @@ const cardTop: Styles = {
   fontWeight: 'bold',
 };
 
-const cardBottom: Styles = {
+const cardBottom: ThemeUICSSObject = {
   flexDirection: 'column',
   maxWidth: desktopWidth,
   background: 'black',
@@ -230,7 +227,7 @@ const cardBottom: Styles = {
   borderBottomLeftRadius: borderRadiusStandard,
 };
 
-const movieSummary: Styles = {
+const movieSummary: ThemeUICSSObject = {
   padding: '0px 10px',
   fontSize: '10px',
   minHeight: '80px',
@@ -239,14 +236,14 @@ const movieSummary: Styles = {
   marginTop: '10px',
 };
 
-const buttonsWrapper: Styles = {
+const buttonsWrapper: ThemeUICSSObject = {
   width: '100%',
   justifyContent: 'space-around',
   padding: '10px',
   marginBottom: '20px',
 };
 
-const buttonAccept: any = {
+const buttonAccept: ThemeUICSSObject = {
   cursor: 'pointer',
   background: buttonBackground,
   border: '1px solid green',
@@ -263,7 +260,7 @@ const buttonAccept: any = {
   },
 };
 
-const buttonDecline: Styles = {
+const buttonDecline: ThemeUICSSObject = {
   cursor: 'pointer',
   background: buttonBackground,
   border: '1px solid red',
@@ -280,12 +277,12 @@ const buttonDecline: Styles = {
   },
 };
 
-const iconAccept: Styles = {
+const iconAccept: ThemeUICSSObject = {
   paddingTop: 1,
   color: 'green',
 };
 
-const iconDecline: Styles = {
+const iconDecline: ThemeUICSSObject = {
   paddingTop: 1,
   color: 'red',
 };
