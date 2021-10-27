@@ -1,12 +1,22 @@
-name: GitHub Actions Demo
-on: [push]
+name: Nx Affected CI 
+on: [push]  
 jobs:
-  Explore-GitHub-Actions:
+  build:
     runs-on: windows-latest
     defaults:  
       run:
-       working-directory: ./hfmorg 
+       working-directory: hfmorg 
+    strategy:
+      matrix:
+        node-version: [12.x]    
     steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
       - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
       - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
@@ -16,7 +26,11 @@ jobs:
       - run: echo "🖥️ The workflow is now ready to test your code on the runner."       
       - name: List files in the repository
         run: |
-          ls ${{ github.workspace }}         
-          
+          ls ${{ github.workspace }}             
+      - run: nx test Movies
+      - run: nx lint movies  
       - run: echo "🍏 This job's status is ${{ job.status }}."
+      
+
+
 
