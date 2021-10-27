@@ -1,5 +1,7 @@
-name: Nx Affected CI On Push
-on: [push] 
+name: Nx Affected CI 
+on: 
+  pull_request:
+      branches: [main] 
 jobs:
   build:
     runs-on: windows-latest
