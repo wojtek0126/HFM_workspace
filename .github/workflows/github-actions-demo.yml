@@ -27,8 +27,8 @@ jobs:
       - name: List files in the repository
         run: |
           ls ${{ github.workspace }}             
-      - run: nx test Movies
-      - run: nx lint movies  
+      - run: npx nx test Movies
+      - run: npx nx lint movies  
       - run: echo "🍏 This job's status is ${{ job.status }}."
       
 
