@@ -1,4 +1,4 @@
-name: Nx Affected CI 
+name: Nx Initial run
 on: [push]  
 jobs:
   build:
@@ -26,10 +26,7 @@ jobs:
       - run: echo "🖥️ The workflow is now ready to test your code on the runner."       
       - name: List files in the repository
         run: |
-          ls ${{ github.workspace }} 
-      - run: npm install                
-      - run: npx nx test Movies
-      - run: npx nx lint movies  
+          ls ${{ github.workspace }}             
       - run: echo "🍏 This job's status is ${{ job.status }}."
       
 
