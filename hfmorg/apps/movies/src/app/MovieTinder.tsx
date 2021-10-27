@@ -21,7 +21,7 @@ type Styles = {
 };
 
 const MovieTinder = () => {
-  const [lastDirection, setLastDirection] = useState();
+  const [lastDirection, setLastDirection] = useState<string | null>();
   const api = '/api/movies';
 
     const [allMovies, setAllMovies] = useState<Movies[] | null>();
@@ -77,32 +77,33 @@ const MovieTinder = () => {
   };
 
   const handleReject = (id: string, movie: any) => {
-    let rejectData: any = { ...movie,
+    const rejectData: any = { ...movie,
       accepted: false, 
       rejected: true 
     };  
       updateMovies(api, id, rejectData);
   };
 
-  const swiped = (direction: any, nameToDelete: any) => {
+  const swiped = (direction: string, nameToDelete: any) => {
     console.log('removing: ' + nameToDelete);
     setLastDirection(direction);
   };
 
   const outOfFrame = (id: any, movie: any) => {
-    let rejectData: any = { ...movie,
+    const rejectData: any = { ...movie,
       accepted: false, 
       rejected: true 
     };  
       updateMovies(api, id, rejectData);
   };
 
+  console.log(typeof(lastDirection), 'lastdireslint');
 
   return (<>
     <Flex sx={titleContainer}>ChozzAndWatch</Flex>
-    
+
     <Flex sx={container}>
-      {allMovies && allMovies!.map((movie: any) => (
+      {allMovies && allMovies.map((movie: any) => (
         <Flex sx={cardWrapper} key={movie.id}>
           <TinderCard
             sx={tindercard}            
@@ -158,12 +159,12 @@ const MovieTinder = () => {
 
 export default MovieTinder;
 
-const buttonBackground: string =
+const buttonBackground =
   'linear-gradient(to right, rgba(35, 37, 38, 0.7) 0%, rgba(65, 67, 69, 0.7)  51%, rgba(35, 37, 38, 0.7)  100%)';
-const buttonClickedBackground: string =
+const buttonClickedBackground =
   'linear-gradient(to right, rgba(35, 37, 38, 0.9) 0%, rgba(65, 67, 69, 0.9)  51%, rgba(35, 37, 38, 0.9)  100%)';
-const borderRadiusStandard: string = '20px';
-const desktopWidth: string = '300px';
+const borderRadiusStandard = '20px';
+const desktopWidth = '300px';
 
 const titleContainer: Styles = {
     alignItems: 'center',
@@ -200,9 +201,10 @@ const cardWrapper: Styles = {
 const tindercard: Styles = {
   display: 'flex',
   flexDirection: 'column',
+  padding: "25px 0",
   '@media (max-width: 800px)': {
     position: 'absolute',
-    top: 10,
+    top: 20,
     zIndex: 10,
   },
 };
