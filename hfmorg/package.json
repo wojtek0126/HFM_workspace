@@ -29,7 +29,7 @@
         "help": "nx help",
         "nx": "nx",
         "workspace-generator": "nx workspace-generator",
-        "predeploy": "build -- --prod --baseHref=/HFM_workspace/",
+        "predeploy": "nx build movies --buildLibsFromSource --prod --baseHref=/HFM_workspace/",
         "deploy": "gh-pages -d dist/apps/movies"
     },
     "private": true,
