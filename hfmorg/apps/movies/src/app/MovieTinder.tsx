@@ -120,12 +120,12 @@ const MovieTinder = () => {
                 backgroundColor: 'backgroundCard',
                 backgroundPosition: 'center',
                 backgroundRepeat: 'no-repeat',
-                '@media (max-width: 800px)': {
-                  backgroundSize: '85% 110%',
+                '@media (max-width: 830px)': {
+                  backgroundSize: '75% 110%',
                   height: '230px',
                 },
                 '@media (max-height: 450px)': {
-                  backgroundSize: '90% 200%',
+                  backgroundSize: '80% 200%',
                   height: '100px',
                   top: "-25px"
                 },
