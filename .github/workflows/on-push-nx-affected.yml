@@ -1,4 +1,4 @@
-name: Nx Affected CI on push with test and lint 
+name: Movies test lint build deploy  
 on: 
   push:
       branches: [main] 
@@ -25,5 +25,10 @@ jobs:
       - name: Run Affected Tests
         shell: bash
         run: npm run affected:test -- --base=remotes/origin/main
+      - name: Run Affected Lint
+        shell: bash
+        run: npm run affected:lint -- --base=remotes/origin/main  
       - run: npm run test movies
-      - run: npm run lint movies  
+      - run: npm run lint movies
+      - run: npm run build movies  
+      - run: npm run deploy movies
