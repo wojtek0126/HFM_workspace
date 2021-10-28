@@ -7,8 +7,13 @@ export const defaultTheme: Theme = {
     monospace: 'Menlo, monospace',
   },
   colors: {
-    text: '#000',
-    background: '#fff',
-    primary: '#33e',
+    textTitle: '#fff',
+    textCard: '#fff',
+    background: 'darkgoldenrod',
+    backgroundTitle: 'gold',
+    backgroundCard: '#000',
+    colorAccept: 'green',
+    colorReject: 'red',
+    colorBtnHover: '#fff'
   },
 };

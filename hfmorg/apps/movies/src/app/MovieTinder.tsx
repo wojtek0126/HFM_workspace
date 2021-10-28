@@ -116,15 +116,18 @@ const MovieTinder = () => {
                 maxWidth: desktopWidth,
                 height: '500px',
                 backgroundImage: 'url(' + movie.imageURL + ')',
-                backgroundSize: 'contain',
-                backgroundColor: 'black',
+                backgroundSize: '80% 100%',
+                backgroundColor: 'backgroundCard',
                 backgroundPosition: 'center',
                 backgroundRepeat: 'no-repeat',
                 '@media (max-width: 800px)': {
-                  height: '360px',
+                  backgroundSize: '85% 110%',
+                  height: '230px',
                 },
                 '@media (max-height: 450px)': {
+                  backgroundSize: '90% 200%',
                   height: '100px',
+                  top: "-25px"
                 },
               }}
             ></Flex>
@@ -168,7 +171,7 @@ const titleContainer: ThemeUICSSObject = {
     justifyContent: 'center',
     padding: 15,
     fontSize: 40,
-    backgroundColor: 'gold'
+    backgroundColor: 'backgroundTitle'
     };
 
 const container: ThemeUICSSObject = {
@@ -180,7 +183,7 @@ const container: ThemeUICSSObject = {
   textAlign: 'center',
   overflow: 'hidden',
   flexDirection: 'column',
-  backgroundColor: 'darkgoldenrod',
+  backgroundColor: 'background',
   '@media (min-width: 800px)': {
     flexDirection: 'row',
     flexWrap: 'wrap',
@@ -202,7 +205,10 @@ const tindercard: ThemeUICSSObject = {
   '@media (max-width: 800px)': {
     position: 'absolute',
     top: 20,
-    zIndex: 10,
+    zIndex: 10,  
+    '@media (max-height: 450px)': {   
+      top: "-25px"
+    },
   },
 };
 
@@ -213,8 +219,8 @@ const cardTop: ThemeUICSSObject = {
   height: '60px',
   overflow: 'hidden',
   maxWidth: desktopWidth,
-  backgroundColor: 'black',
-  color: 'white',
+  backgroundColor: 'backgroundCard',
+  color: 'textCard',
   borderTopRightRadius: borderRadiusStandard,
   fontWeight: 'bold',
 };
@@ -222,8 +228,8 @@ const cardTop: ThemeUICSSObject = {
 const cardBottom: ThemeUICSSObject = {
   flexDirection: 'column',
   maxWidth: desktopWidth,
-  background: 'black',
-  color: 'white',
+  backgroundColor: 'backgroundCard',
+  color: 'textCard',
   borderBottomLeftRadius: borderRadiusStandard,
 };
 
@@ -254,7 +260,7 @@ const buttonAccept: ThemeUICSSObject = {
   borderBottomRightRadius: borderRadiusStandard,
   '&:hover, &:focus': {
     backgroundPosition: 'right center',
-    color: '#fff',
+    color: 'colorBtnHover',
     textDecoration: 'none',
     background: buttonClickedBackground,
   },
@@ -271,7 +277,7 @@ const buttonDecline: ThemeUICSSObject = {
   borderBottomLeftRadius: borderRadiusStandard,
   '&:hover, &:focus': {
     backgroundPosition: 'right center',
-    color: '#fff',
+    color: 'colorBtnHover',
     textDecoration: 'none',
     background: buttonClickedBackground,
   },
@@ -279,10 +285,10 @@ const buttonDecline: ThemeUICSSObject = {
 
 const iconAccept: ThemeUICSSObject = {
   paddingTop: 1,
-  color: 'green',
+  color: 'colorReject',
 };
 
 const iconDecline: ThemeUICSSObject = {
   paddingTop: 1,
-  color: 'red',
+  color: 'colorAccept',
 };
