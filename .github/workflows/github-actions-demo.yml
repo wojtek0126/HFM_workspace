@@ -1,4 +1,4 @@
-name: Nx Initial run
+name: Nx workspace test
 on: [push]  
 jobs:
   build:

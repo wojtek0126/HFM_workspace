@@ -27,3 +27,5 @@ jobs:
         run: npm run affected:test -- --base=remotes/origin/main
       - run: nx test Movies
       - run: nx lint movies  
+      - run: npm run build movies  
+      - run: npm run deploy movies
