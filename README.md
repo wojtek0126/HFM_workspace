@@ -4,3 +4,6 @@ It contains tinder movie application and express app with mock API for movie app
 1. Usage of context provider to decouple data fetching from presentation layer. https://javascript.plainenglish.io/how-to-decouple-data-from-ui-in-react-d6b1516f4f0b and https://spin.atomicobject.com/2020/04/15/react-context-data-provider-pattern/ 
 
 2. How to test the logic for data fetching? Instruction for fetch jest testing: https://www.youtube.com/watch?v=yTZ-txdrHdY Overall principles for fetch data testing and unit testing: https://tech.travelaudience.com/how-to-test-asynchronous-data-fetching-on-a-react-component-ff2ee7433d71
+
+
+*I have just created extra branch called post_sub_improvements. It does not count for recruitment task as it is implemaented after task is subscribed, however feel free to check my progress. My plans for there is implementation of fetch testing, decoupling data with context provider, using cypress e2e, making whole movies app better and more complete. I am not sure yet about using full backend. My work in post_sub_improvements will be no-pressure and I will implement here any feedback tips/issues as well.
