@@ -7,6 +7,8 @@ import TinderCard from 'react-tinder-card';
 import { useEffect, useState } from 'react';
 
 import { AiOutlineClose, AiOutlineCheck } from 'react-icons/ai';
+
+import ReactLoading from 'react-loading';
 interface Movies {
   id: string;
   imageURL: string;
@@ -20,16 +22,17 @@ interface Movies {
 
 const MovieTinder = () => {
   const [lastDirection, setLastDirection] = useState<string | null>();
+  const [isLoading, setIsLoading] = useState(true);
   const api = '/api/movies';
 
     const [allMovies, setAllMovies] = useState<Movies[] | null>();
 
     useEffect(() => {  
-      fetchData( setAllMovies, api);
+      fetchData();
     }, []);
 
-    async function fetchData(setCallback: React.Dispatch<React.SetStateAction<Movies[] | null | undefined>>, API: string) {   
-      await fetch(API, {
+    async function fetchData() {   
+      await fetch('/api/movies', {
           mode: "cors",
           method: "GET",
           headers: {
@@ -40,7 +43,8 @@ const MovieTinder = () => {
           return response.json();        
       })
       .then(data => {  
-          setCallback(data);
+          setAllMovies(data);
+          setIsLoading(false);
       })
       .catch(error => {
           console.log(error);
@@ -94,6 +98,15 @@ const MovieTinder = () => {
     };  
       updateMovies(api, id, rejectData);
   };
+
+  if(isLoading) {
+    return (<> 
+    <Flex sx={titleContainer}>ChozzAndWatch</Flex>
+    <Flex sx={loadingContainer}>
+      <ReactLoading type={"spin"} color={"text"} height={'8%'} width={'8%'} />
+    </Flex>
+    </>)
+  }
 
 
   return (<>
@@ -172,6 +185,18 @@ const titleContainer: ThemeUICSSObject = {
     padding: 15,
     fontSize: 40,
     backgroundColor: 'backgroundTitle'
+    };
+
+    const loadingContainer: ThemeUICSSObject = {
+      justifyContent: 'center',
+      alignItems: 'center',
+      minHeight: '100vh',
+      width: '100vw',
+      textAlign: 'center',
+      flexDirection: 'column',
+      backgroundColor: 'background',
+      fontSize: 50,
+      fontWeight: 'bold'
     };
 
 const container: ThemeUICSSObject = {
