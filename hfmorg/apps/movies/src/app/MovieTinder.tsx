@@ -29,7 +29,7 @@ const MovieTinder = () => {
 
     useEffect(() => { 
       async function fetchData() {   
-        await fetch('/api/movies', {
+        await fetch(api, {
             mode: "cors",
             method: "GET",
             headers: {
