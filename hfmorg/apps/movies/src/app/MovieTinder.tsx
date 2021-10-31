@@ -27,48 +27,47 @@ const MovieTinder = () => {
 
     const [allMovies, setAllMovies] = useState<Movies[] | null>();
 
-    useEffect(() => {  
+    useEffect(() => { 
+      async function fetchData() {   
+        await fetch('/api/movies', {
+            mode: "cors",
+            method: "GET",
+            headers: {
+                "Accept": "application/json"
+            }
+        })
+        .then(response => {
+            return response.json();        
+        })
+        .then(data => {  
+            setAllMovies(data);
+            setIsLoading(false);
+        })
+        .catch(error => {
+            console.log(error);
+        });
+            };  
       fetchData();
     }, []);
-
-    async function fetchData() {   
-      await fetch('/api/movies', {
+          
+   
+    async function updateMovies(API: string, id: string, data: Movies) {   
+      await fetch(`${API}/${id}`, {
           mode: "cors",
-          method: "GET",
-          headers: {
-              "Accept": "application/json"
-          }
+          method: "PUT",
+           headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
       })
       .then(response => {
           return response.json();        
       })
-      .then(data => {  
-          setAllMovies(data);
-          setIsLoading(false);
+      .then(data => {        
+          return data;
       })
       .catch(error => {
           console.log(error);
       });
           }; 
-          
-   
-          async function updateMovies(API: string, id: string, data: Movies) {   
-            await fetch(`${API}/${id}`, {
-                mode: "cors",
-                method: "PUT",
-                 headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(data)
-            })
-            .then(response => {
-                return response.json();        
-            })
-            .then(data => {        
-                return data;
-            })
-            .catch(error => {
-                console.log(error);
-            });
-                }; 
 
   const handleAccept = (id: string, movie: Movies) => {
     const acceptData: Movies = { ...movie,
@@ -310,10 +309,10 @@ const buttonDecline: ThemeUICSSObject = {
 
 const iconAccept: ThemeUICSSObject = {
   paddingTop: 1,
-  color: 'colorReject',
+  color: 'colorAccept',
 };
 
 const iconDecline: ThemeUICSSObject = {
   paddingTop: 1,
-  color: 'colorAccept',
+  color: 'colorReject',
 };
