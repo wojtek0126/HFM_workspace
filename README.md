@@ -1,3 +1,4 @@
 # HFM_workspace
-HappyFreeMan public workspace
-Experimental, learning purposes, for now..It contains movie tinder task with my own experimental UI/UX concepts, express api, buit in testing and more..project is evolving. Now it has gh actions workflow in.
+*I have created extra branch called post_sub_improvements. It does not count for recruitment task as it is implemaented after task is subscribed, however feel free to check my progress. My plans for there is implementation of fetch testing, decoupling data with context provider, using cypress e2e, making whole movies app better and more complete. I am not sure yet about using full backend. My work in post_sub_improvements will be no-pressure and I will implement here any feedback tips/issues as well.
+
+-moved fetch GET function into useEffect, it does not need to be 'multiuse' anymore as it is only used once -fixed color issue on button icons -added loading (custom react-loading) before data is rendered -->working to implement jest fetch testing and jest testing in general<--
