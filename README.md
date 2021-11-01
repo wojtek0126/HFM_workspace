@@ -11,4 +11,4 @@ It contains tinder movie application and express app with mock API for movie app
 -moved fetch GET function into useEffect
 -fixed color issue on button icons
 -added loading (custom react-loading) before data is rendered
--->working to implement jest fetch testing and jest testing in general<--
+-->working to implement jest fetch testing and jest testing in general<--just tutorials and specific knowledge is not enough, eting knowledge from docs..jest docs...react testing library docs..
