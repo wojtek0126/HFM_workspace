@@ -9,7 +9,8 @@ import { useEffect, useState } from 'react';
 import { AiOutlineClose, AiOutlineCheck } from 'react-icons/ai';
 
 import ReactLoading from 'react-loading';
-interface Movies {
+import { movieDataMock } from './mockData';
+export interface Movies {
   id: string;
   imageURL: string;
   title: string;
@@ -28,26 +29,31 @@ const MovieTinder = () => {
     const [allMovies, setAllMovies] = useState<Movies[] | null>();
 
     useEffect(() => { 
-      async function fetchData() {   
-        await fetch(api, {
-            mode: "cors",
-            method: "GET",
-            headers: {
-                "Accept": "application/json"
-            }
-        })
-        .then(response => {
-            return response.json();        
-        })
-        .then(data => {  
-            setAllMovies(data);
-            setIsLoading(false);
-        })
-        .catch(error => {
-            console.log(error);
-        });
-            };  
-      fetchData();
+      // async function fetchData() {   
+      //   await fetch(api, {
+      //       mode: "cors",
+      //       method: "GET",
+      //       headers: {
+      //           "Accept": "application/json"
+      //       }
+      //   })
+      //   .then(response => {
+      //       return response.json();        
+      //   })
+      //   .then(data => {  
+      //       setAllMovies(data);
+      //       setIsLoading(false);
+      //   })
+      //   .catch(error => {
+      //       console.log(error);
+      //   });
+      //       };  
+      function mockData() {
+        setAllMovies(movieDataMock);
+        setIsLoading(false);
+      } 
+      mockData();     
+      // fetchData();
     }, []);
           
    
@@ -101,7 +107,7 @@ const MovieTinder = () => {
   if(isLoading) {
     return (<> 
     <Flex sx={titleContainer}>ChozzAndWatch</Flex>
-    <Flex sx={loadingContainer}>
+    <Flex sx={loadingContainer}>Loading
       <ReactLoading type={"spin"} color={"text"} height={'8%'} width={'8%'} />
     </Flex>
     </>)
