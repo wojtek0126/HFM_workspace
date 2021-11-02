@@ -29,31 +29,31 @@ const MovieTinder = () => {
     const [allMovies, setAllMovies] = useState<Movies[] | null>();
 
     useEffect(() => { 
-      // async function fetchData() {   
-      //   await fetch(api, {
-      //       mode: "cors",
-      //       method: "GET",
-      //       headers: {
-      //           "Accept": "application/json"
-      //       }
-      //   })
-      //   .then(response => {
-      //       return response.json();        
-      //   })
-      //   .then(data => {  
-      //       setAllMovies(data);
-      //       setIsLoading(false);
-      //   })
-      //   .catch(error => {
-      //       console.log(error);
-      //   });
-      //       };  
-      function mockData() {
-        setAllMovies(movieDataMock);
-        setIsLoading(false);
-      } 
-      mockData();     
-      // fetchData();
+      async function fetchData() {   
+        await fetch(api, {
+            mode: "cors",
+            method: "GET",
+            headers: {
+                "Accept": "application/json"
+            }
+        })
+        .then(response => {
+            return response.json();        
+        })
+        .then(data => {  
+            setAllMovies(data);
+            setIsLoading(false);
+        })
+        .catch(error => {
+            console.log(error);
+        });
+            };  
+      // function mockData() {
+      //   setAllMovies(movieDataMock);
+      //   setIsLoading(false);
+      // } 
+      // mockData();     
+      fetchData();
     }, []);
           
    
