@@ -107,7 +107,7 @@ const MovieTinder = () => {
   if(isLoading) {
     return (<> 
     <Flex sx={titleContainer}>ChozzAndWatch</Flex>
-    <Flex sx={loadingContainer}>Loading
+    <Flex sx={loadingContainer}>
       <ReactLoading type={"spin"} color={"text"} height={'8%'} width={'8%'} />
     </Flex>
     </>)

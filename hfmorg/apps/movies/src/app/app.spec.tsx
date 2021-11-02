@@ -2,10 +2,9 @@ import { render, screen, cleanup, act } from '@testing-library/react';
 import "@testing-library/jest-dom/extend-expect";
 
 import App from './app';
-// import MovieTinder from './MovieTinder';
-// import TinderCard from 'react-tinder-card';
 
 const  globalRef:any = global;
+
 
 beforeEach(() => {
   globalRef.fetch = jest.fn(() => Promise.resolve({
@@ -16,16 +15,16 @@ beforeEach(() => {
       rating: 5.3
     }])
   }));
- })
+ });
 
 afterEach(() => {
   cleanup();
-})
+});
 
 describe("App", () => {
     it('should render successfully', () => {   
-    const { baseElement, debug } = render(<App />);
-    console.log(debug());
+    const { baseElement } = render(<App />);
+    console.log(screen.debug());
     expect(baseElement).toBeTruthy();
   });
 
@@ -38,23 +37,49 @@ describe("App", () => {
   it("should load data on mount", async () => {
     //@ts-ignore
     await act(async () => render(<App />))
+    console.log(screen.debug());
     expect(screen.getByText("Inferno(5.3/10)")).toBeInTheDocument();
-  })
+  });
 
-  it("should load card with button Accept", async () => {
+  it("should load cards with title and rating", async () => {
     //@ts-ignore
     await act(async () => render(<App />))
-    expect(screen.getByText("Accept")).toBeInTheDocument();
-  })
+    expect(screen.getByText("Inferno(5.3/10)")).toBeInTheDocument();
+  });
 
-  it("should load card with button Decline", async () => {
+  it("should load cards with movie description", async () => {
     //@ts-ignore
     await act(async () => render(<App />))
-    expect(screen.getByText("Decline")).toBeInTheDocument();
-  })
+    expect(screen.getByText("Lorem ipsum....")).toBeInTheDocument();
+  });
 
+  it("should load card with button Accept being button", async () => {
+    //@ts-ignore
+    await act(async () => render(<App />))
 
-})
+    expect(screen.getByRole('button', { name: 'Accept' })).toBeInTheDocument();
+  });
+
+  it("should load card with button Decline being button", async () => {
+    //@ts-ignore
+    await act(async () => render(<App />))
+    expect(screen.getByRole('button', { name: 'Decline' })).toBeInTheDocument();
+  });
+
+  it("should button Accept contain icon", async () => {
+    //@ts-ignore
+    await act(async () => render(<App />))
+    const declineBtn = screen.getByRole('button', { name: 'Accept' })
+    expect(declineBtn.querySelector('svg')).toBeInTheDocument();
+  });
+
+  it("should button Decline contain icon", async () => {
+    //@ts-ignore
+    await act(async () => render(<App />))
+    const declineBtn = screen.getByRole('button', { name: 'Decline' })
+    expect(declineBtn.querySelector('svg')).toBeInTheDocument();
+  });
+});
  
     
 
