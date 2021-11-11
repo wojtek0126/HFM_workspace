@@ -8,6 +8,10 @@ It contains tinder movie application and express app with mock API for movie app
 
 *I have created extra branch called post_sub_improvements. It does not count for recruitment task as it is implemaented after task is subscribed, however feel free to check my progress. My plans for there is implementation of fetch testing, decoupling data with context provider, using cypress e2e, making whole movies app better and more complete. I am not sure yet about using full backend. My work in post_sub_improvements will be no-pressure and I will implement here any feedback tips/issues as well.
 
+Answers:
+1. How to test fetch logic? With mock api masquerading as real live data. Using automated tests like jest.js.
+2. 2. Decouple data with context provider. Capture fetched data with createContext hook, wrap components in range of context with context provider and use useContect hook in desired components within context provider range. i do similar thing with recoil, but with recoil I can also process captured data 'behind the scenes'  
+
 Log:
 -moved fetch GET function into useEffect
 -fixed color issue on button icons
