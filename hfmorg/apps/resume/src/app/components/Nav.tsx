@@ -1,10 +1,12 @@
+/** @jsxImportSource theme-ui */
+
 import LinkButton from "./atoms/LinkButton";
 
 export function Nav() {
   return (
    
      
-      <div style={{
+      <div sx={{
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'center',
@@ -13,9 +15,10 @@ export function Nav() {
         color: '#fff'
       }}>       
          
-          <div style={{
+          <div sx={{
               display: 'flex',
               flexDirection: 'row',
+              marginRight: '40px'
           }}>
              <LinkButton color={'#fff'} content={'showbox'} />
              <LinkButton color={'#fff'} content={'about me'} />

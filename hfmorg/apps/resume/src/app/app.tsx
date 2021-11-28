@@ -1,14 +1,20 @@
+/** @jsxImportSource theme-ui */
+
 import { Route, Link } from 'react-router-dom';
 import Logo from './components/atoms/Logo';
 import Nav from './components/Nav';
+import { ThemeProvider } from 'theme-ui';
+import { defaultTheme } from './themes/theme';
+
 
 export function App() {
   return (
-    <div style={{
+ <ThemeProvider theme={defaultTheme}>
+     <div sx={{
       maxWidth: '100%',      
     }}>
      
-      <section style={{
+      <section sx={{
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'space-between',
@@ -17,13 +23,17 @@ export function App() {
         color: '#fff'
       }}>
         
-      <Logo />
+        <Logo text1={'my'} text2={'resume'} />
          
-     <Nav />
+        <Nav />
       
       </section>
 
     </div>
+  </ThemeProvider>
+
+
+
   );
 }
 
