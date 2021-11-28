@@ -9,7 +9,7 @@ import { useEffect, useState } from 'react';
 import { AiOutlineClose, AiOutlineCheck } from 'react-icons/ai';
 
 import ReactLoading from 'react-loading';
-import { movieDataMock } from './mockData';
+// import { movieDataMock } from './mockData';
 export interface Movies {
   id: string;
   imageURL: string;
