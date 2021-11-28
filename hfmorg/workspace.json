@@ -158,6 +158,103 @@
       },
       "tags": [],
       "implicitDependencies": ["movies"]
+    },
+    "resume": {
+      "root": "apps/resume",
+      "sourceRoot": "apps/resume/src",
+      "projectType": "application",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/web:build",
+          "outputs": ["{options.outputPath}"],
+          "defaultConfiguration": "production",
+          "options": {
+            "outputPath": "dist/apps/resume",
+            "index": "apps/resume/src/index.html",
+            "baseHref": "/",
+            "main": "apps/resume/src/main.tsx",
+            "polyfills": "apps/resume/src/polyfills.ts",
+            "tsConfig": "apps/resume/tsconfig.app.json",
+            "assets": ["apps/resume/src/favicon.ico", "apps/resume/src/assets"],
+            "styles": ["apps/resume/src/styles.css"],
+            "scripts": [],
+            "webpackConfig": "@nrwl/react/plugins/webpack"
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/resume/src/environments/environment.ts",
+                  "with": "apps/resume/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false
+            }
+          }
+        },
+        "serve": {
+          "executor": "@nrwl/web:dev-server",
+          "options": {
+            "buildTarget": "resume:build",
+            "hmr": true
+          },
+          "configurations": {
+            "production": {
+              "buildTarget": "resume:build:production",
+              "hmr": false
+            }
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["apps/resume/**/*.{ts,tsx,js,jsx}"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/resume"],
+          "options": {
+            "jestConfig": "apps/resume/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "tags": []
+    },
+    "resume-e2e": {
+      "root": "apps/resume-e2e",
+      "sourceRoot": "apps/resume-e2e/src",
+      "projectType": "application",
+      "targets": {
+        "e2e": {
+          "executor": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/resume-e2e/cypress.json",
+            "devServerTarget": "resume:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "resume:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["apps/resume-e2e/**/*.{js,ts}"]
+          }
+        }
+      },
+      "tags": [],
+      "implicitDependencies": ["resume"]
     }
   }
 }

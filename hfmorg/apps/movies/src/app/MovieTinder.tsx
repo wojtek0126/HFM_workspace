@@ -7,7 +7,10 @@ import TinderCard from 'react-tinder-card';
 import { useEffect, useState } from 'react';
 
 import { AiOutlineClose, AiOutlineCheck } from 'react-icons/ai';
-interface Movies {
+
+import ReactLoading from 'react-loading';
+// import { movieDataMock } from './mockData';
+export interface Movies {
   id: string;
   imageURL: string;
   title: string;
@@ -20,51 +23,57 @@ interface Movies {
 
 const MovieTinder = () => {
   const [lastDirection, setLastDirection] = useState<string | null>();
+  const [isLoading, setIsLoading] = useState(true);
   const api = '/api/movies';
 
     const [allMovies, setAllMovies] = useState<Movies[] | null>();
 
-    useEffect(() => {  
-      fetchData( setAllMovies, api);
+    useEffect(() => { 
+      async function fetchData() {   
+        await fetch(api, {
+            mode: "cors",
+            method: "GET",
+            headers: {
+                "Accept": "application/json"
+            }
+        })
+        .then(response => {
+            return response.json();        
+        })
+        .then(data => {  
+            setAllMovies(data);
+            setIsLoading(false);
+        })
+        .catch(error => {
+            console.log(error);
+        });
+            };  
+      // function mockData() {
+      //   setAllMovies(movieDataMock);
+      //   setIsLoading(false);
+      // } 
+      // mockData();     
+      fetchData();
     }, []);
-
-    async function fetchData(setCallback: React.Dispatch<React.SetStateAction<Movies[] | null | undefined>>, API: string) {   
-      await fetch(API, {
+          
+   
+    async function updateMovies(API: string, id: string, data: Movies) {   
+      await fetch(`${API}/${id}`, {
           mode: "cors",
-          method: "GET",
-          headers: {
-              "Accept": "application/json"
-          }
+          method: "PUT",
+           headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
       })
       .then(response => {
           return response.json();        
       })
-      .then(data => {  
-          setCallback(data);
+      .then(data => {        
+          return data;
       })
       .catch(error => {
           console.log(error);
       });
           }; 
-          
-   
-          async function updateMovies(API: string, id: string, data: Movies) {   
-            await fetch(`${API}/${id}`, {
-                mode: "cors",
-                method: "PUT",
-                 headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(data)
-            })
-            .then(response => {
-                return response.json();        
-            })
-            .then(data => {        
-                return data;
-            })
-            .catch(error => {
-                console.log(error);
-            });
-                }; 
 
   const handleAccept = (id: string, movie: Movies) => {
     const acceptData: Movies = { ...movie,
@@ -94,6 +103,15 @@ const MovieTinder = () => {
     };  
       updateMovies(api, id, rejectData);
   };
+
+  if(isLoading) {
+    return (<> 
+    <Flex sx={titleContainer}>ChozzAndWatch</Flex>
+    <Flex sx={loadingContainer}>
+      <ReactLoading type={"spin"} color={"text"} height={'8%'} width={'8%'} />
+    </Flex>
+    </>)
+  }
 
 
   return (<>
@@ -172,6 +190,18 @@ const titleContainer: ThemeUICSSObject = {
     padding: 15,
     fontSize: 40,
     backgroundColor: 'backgroundTitle'
+    };
+
+    const loadingContainer: ThemeUICSSObject = {
+      justifyContent: 'center',
+      alignItems: 'center',
+      minHeight: '100vh',
+      width: '100vw',
+      textAlign: 'center',
+      flexDirection: 'column',
+      backgroundColor: 'background',
+      fontSize: 50,
+      fontWeight: 'bold'
     };
 
 const container: ThemeUICSSObject = {
@@ -285,10 +315,10 @@ const buttonDecline: ThemeUICSSObject = {
 
 const iconAccept: ThemeUICSSObject = {
   paddingTop: 1,
-  color: 'colorReject',
+  color: 'colorAccept',
 };
 
 const iconDecline: ThemeUICSSObject = {
   paddingTop: 1,
-  color: 'colorAccept',
+  color: 'colorReject',
 };
