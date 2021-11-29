@@ -5,6 +5,7 @@ import Logo from './components/atoms/Logo';
 import Nav from './components/Nav';
 import { ThemeProvider } from 'theme-ui';
 import { defaultTheme } from './themes/theme';
+import MobileNav from './components/MobileNav';
 
 
 export function App() {
@@ -25,7 +26,8 @@ export function App() {
         
         <Logo text1={'my'} text2={'resume'} />
          
-        <Nav />
+          {/* <Nav /> */}
+          <MobileNav />
       
       </section>
 
