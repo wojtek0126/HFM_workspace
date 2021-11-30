@@ -7,8 +7,11 @@ export interface ComponentsProps {
     display?: string;
     colorBtn?: string;
     contentBtn?: string;
-    onClick?: any;
-    onBlur?: any;
+    onClick?: () => void;
+    onBlur?: () => void;
     backgroundColor?: string;
     width?: string;
+    top?: string;
+    zIndex?: string;
+    transition?: string;
 }

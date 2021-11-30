@@ -2,8 +2,6 @@
 
 /** @jsxImportSource theme-ui */
 import Hamburger from 'hamburger-react'
-// import { slide as Menu } from 'react-burger-menu';
-
 import { useState } from "react";
 import { Flex } from "theme-ui";
 import OptionButton from "./atoms/OptionButton";
@@ -15,7 +13,7 @@ export function MobileNav() {
     const [slideMenu, setSlideMenu] = useState('100%');
 
     const switchShowMenuDisplay = () => {
-        if (slideMenu === '100%') setSlideMenu('50%');
+        if (slideMenu === '100%') setSlideMenu('60%');
         else setSlideMenu('100%');
     };
 
@@ -25,33 +23,29 @@ export function MobileNav() {
     };
 
     const hideOptionsDisplay = () => {
-        // setShowbox('none');
+        setShowbox('none');
         setOpen(false);
         setSlideMenu('100%');
-    };
+  };
+  
 
-  return (
-   
-     
+  return (     
       <Flex sx={{
-
         justifyContent: 'center',
         alignItems: 'center',
-          backgroundColor: 'black',
-        // position: 'relative',
-          color: '#fff',
+        backgroundColor: 'black',
+        color: '#fff',
       }}>       
          
-          <Flex sx={{
-                                      transition: '2s',
-
-              height: '100%',
-                      width: '100%',
-                        backgroundColor: 'black',
-
+          <Flex sx={{              
+              transition: '2s',
+              height: '600px',
+              width: '100%',
+              backgroundColor: 'black',
+              borderBottomLeftRadius: '242px',
               flexDirection: 'column',
               marginRight: '40px',
-              position: 'fixed',
+              position: 'absolute',
               top: '80px',
               left: slideMenu,
           }}>
@@ -64,14 +58,16 @@ export function MobileNav() {
                       color={'#fff'}
                       content={'showbox'}
                       onClick={switchShowboxOptionsDisplay}
-                      onBlur={hideOptionsDisplay}
+            onBlur={hideOptionsDisplay}
+            
                   />
                   <OptionList display={showbox} options={<>
-                      <OptionButton color={'#fff'} content={'list with filters'} width={'max-content'} onClick={hideOptionsDisplay}/>
-                      <OptionButton color={'#fff'} content={'movie tinder'} onClick={hideOptionsDisplay}/>
-                      <OptionButton color={'#fff'} content={'calculator'} onClick={hideOptionsDisplay}/>
-                      <OptionButton color={'#fff'} content={'organizer app'} width={'max-content'} onClick={hideOptionsDisplay}/>
-                      <OptionButton color={'#fff'} content={'chat app'} onClick={hideOptionsDisplay}/>
+                      <OptionButton color={'#fff'} content={'list'} width={'max-content'} onClick={hideOptionsDisplay}/>
+                      <OptionButton color={'#fff'} content={'movies'} onClick={hideOptionsDisplay}/>
+                      <OptionButton color={'#fff'} content={'calculator'} onClick={hideOptionsDisplay} />
+                      <OptionButton color={'#fff'} content={'weather'} onClick={hideOptionsDisplay}/>
+                      <OptionButton color={'#fff'} content={'organizer'} width={'max-content'} onClick={hideOptionsDisplay}/>
+                      <OptionButton color={'#fff'} content={'chat'} onClick={hideOptionsDisplay}/>
                   </>} />
             </Flex>                  
 
@@ -85,59 +81,11 @@ export function MobileNav() {
               marginRight: '10px'
                 }}>                      
               <Hamburger toggled={isOpen} toggle={setOpen} onToggle={switchShowMenuDisplay} />
-        </Flex>
+          </Flex>
       
       </Flex>
-
   );
 }
 
 export default MobileNav;
 
-const styles: unknown = {
-  bmBurgerButton: {
-    position: 'fixed',
-    width: '36px',
-    height: '30px',
-    right: '36px',
-    top: '36px'
-  },
-  bmBurgerBars: {
-    background: '#fff'
-  },
-  bmBurgerBarsHover: {
-    background: '#a90000'
-  },
-  bmCrossButton: {
-    height: '24px',
-    width: '24px'
-  },
-  bmCross: {
-    background: '#fff'
-  },
-  bmMenuWrap: {
-    position: 'fixed',
-    height: '100%'
-  },
-  bmMenu: {
-      background: 'black',
-    
-    // padding: '2.5em 1.5em 0',
-    // fontSize: '1.15em'
-  },
-  bmMorphShape: {
-    fill: '#373a47'
-  },
-    bmItemList: {
-        display: 'flex',
-      flexDirection: 'column',
-    color: '#b8b7ad',
-    padding: '0.8em'
-  },
-  bmItem: {
-    display: 'inline-block'
-  },
-  bmOverlay: {
-    background: 'rgba(0, 0, 0, 0.3)'
-  }
-}

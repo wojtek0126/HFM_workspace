@@ -6,17 +6,23 @@ import OptionButton from "./atoms/OptionButton";
 import OptionList from "./OptionList";
 
 export function Nav() {
-    const [showbox, setShowbox] = useState('none');
+    const [slideMenu, setSlideMenu] = useState('-243px');
+
 
     const switchShowboxOptionsDisplay = () => {
-        setShowbox('flex');       
+        if (slideMenu === '-243px') {         
+            setSlideMenu('65px');
+        }
+        else {
+            setSlideMenu('-243px');
+        };
     };
 
-    const hideShowboxOptionsDisplay = () => {
-        setShowbox('none');    };
+    const hideShowboxOptionsDisplay = () => {        
+        setSlideMenu('-243px');     
+    };
 
-  return (
-   
+  return (   
      
       <Flex sx={{
         flexDirection: 'row',
@@ -27,10 +33,9 @@ export function Nav() {
       }}>       
          
           <Flex sx={{
-            //   display: 'none',
-              position: 'relative',
-              flexDirection: 'row',
-              marginRight: '40px'
+            position: 'relative',
+            flexDirection: 'row',
+            marginRight: '40px'
           }}>
 
             <Flex sx={{
@@ -40,14 +45,16 @@ export function Nav() {
                       color={'#fff'}
                       content={'showbox'}
                       onClick={switchShowboxOptionsDisplay}
-                      onBlur={hideShowboxOptionsDisplay}
                   />
-                  <OptionList display={showbox} options={<>
-                      <OptionButton color={'#fff'} content={'list with filters'} />
-                      <OptionButton color={'#fff'} content={'movie tinder'} />
-                      <OptionButton color={'#fff'} content={'calculator'} />
-                      <OptionButton color={'#fff'} content={'organizer app'} />
-                      <OptionButton color={'#fff'} content={'chat app'} />
+                  <OptionList top={slideMenu}
+                      display={'flex'}
+                      zIndex={'-1'} options={<>
+                      <OptionButton color={'#fff'} content={'list'} onClick={switchShowboxOptionsDisplay} />
+                      <OptionButton color={'#fff'} content={'movies'} onClick={switchShowboxOptionsDisplay} />
+                      <OptionButton color={'#fff'} content={'calculator'} onClick={switchShowboxOptionsDisplay} />
+                      <OptionButton color={'#fff'} content={'weather'} onClick={switchShowboxOptionsDisplay} />
+                      <OptionButton color={'#fff'} content={'organizer'} onClick={switchShowboxOptionsDisplay} />
+                      <OptionButton color={'#fff'} content={'chat'} onClick={switchShowboxOptionsDisplay} />
                   </>} />
             </Flex>                  
 
@@ -55,13 +62,7 @@ export function Nav() {
              <OptionButton color={'#fff'} content={'my tech'} onClick={hideShowboxOptionsDisplay}/>
              <OptionButton color={'#fff'} content={'my interests'} onClick={hideShowboxOptionsDisplay}/>
              <OptionButton color={'#fff'} content={'contact'} onClick={hideShowboxOptionsDisplay}/>          
-          </Flex>
-          
-          {/* <Flex sx={{
-              marginRight: '40px'
-                }}>                      
-        mobile nav       
-       </Flex> */}
+          </Flex>   
       
       </Flex>
 

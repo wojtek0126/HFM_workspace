@@ -3,7 +3,7 @@
 import { Route, Link } from 'react-router-dom';
 import Logo from './components/atoms/Logo';
 import Nav from './components/Nav';
-import { ThemeProvider } from 'theme-ui';
+import { Container, Flex, ThemeProvider } from 'theme-ui';
 import { defaultTheme } from './themes/theme';
 import MobileNav from './components/MobileNav';
 import { useEffect, useState } from 'react';
@@ -22,12 +22,11 @@ const [width, setWidth] = useState(window.innerWidth);
 
   return (
  <ThemeProvider theme={defaultTheme}>
-     <div sx={{
+     <Container sx={{
       maxWidth: '100%',      
     }}>
      
-      <section sx={{
-        display: 'flex',
+      <Flex sx={{
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
@@ -35,14 +34,10 @@ const [width, setWidth] = useState(window.innerWidth);
         color: '#fff'
       }}>
         
-        <Logo text1={'my'} text2={'resume'} />
-         
-                  {width > breakPoint ? (<Nav />) : ( <MobileNav />)}
-
-      
-      </section>
-
-    </div>
+        <Logo text1={'my'} text2={'resume'} />         
+                  {width > breakPoint ? (<Nav />) : ( <MobileNav />)}      
+      </Flex>
+    </Container>
   </ThemeProvider>
 
 
