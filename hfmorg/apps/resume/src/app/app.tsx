@@ -6,9 +6,20 @@ import Nav from './components/Nav';
 import { ThemeProvider } from 'theme-ui';
 import { defaultTheme } from './themes/theme';
 import MobileNav from './components/MobileNav';
+import { useEffect, useState } from 'react';
 
 
 export function App() {
+const [width, setWidth] = useState(window.innerWidth);
+  const breakPoint = 820; 
+ 
+  
+  useEffect(() => {
+   const handleWindowResize = () => setWidth(window.innerWidth);
+   window.addEventListener("resize", handleWindowResize);    
+   return () => window.removeEventListener("resize", handleWindowResize);
+  },[]);
+
   return (
  <ThemeProvider theme={defaultTheme}>
      <div sx={{
@@ -26,8 +37,8 @@ export function App() {
         
         <Logo text1={'my'} text2={'resume'} />
          
-          {/* <Nav /> */}
-          <MobileNav />
+                  {width > breakPoint ? (<Nav />) : ( <MobileNav />)}
+
       
       </section>
 

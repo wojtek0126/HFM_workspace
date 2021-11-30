@@ -12,11 +12,11 @@ import OptionList from "./OptionList";
 export function MobileNav() {
     const [isOpen, setOpen] = useState(false);
     const [showbox, setShowbox] = useState('none');
-    const [showMenu, setShowMenu] = useState('none');
+    const [slideMenu, setSlideMenu] = useState('100%');
 
     const switchShowMenuDisplay = () => {
-        if (showMenu === 'none') setShowMenu('flex');
-        else setShowMenu('none');
+        if (slideMenu === '100%') setSlideMenu('50%');
+        else setSlideMenu('100%');
     };
 
     const switchShowboxOptionsDisplay = () => {
@@ -24,31 +24,36 @@ export function MobileNav() {
         else setShowbox('none');
     };
 
-    const hideShowboxOptionsDisplay = () => {
-        setShowbox('none');
+    const hideOptionsDisplay = () => {
+        // setShowbox('none');
+        setOpen(false);
+        setSlideMenu('100%');
     };
 
   return (
    
      
       <Flex sx={{
+
         justifyContent: 'center',
         alignItems: 'center',
           backgroundColor: 'black',
         // position: 'relative',
-        color: '#fff'
+          color: '#fff',
       }}>       
          
           <Flex sx={{
-              display: showMenu,
+                                      transition: '2s',
+
               height: '100%',
-            //   minWidth: '100%', 
+                      width: '100%',
                         backgroundColor: 'black',
 
               flexDirection: 'column',
               marginRight: '40px',
               position: 'fixed',
               top: '80px',
+              left: slideMenu,
           }}>
 
             <Flex sx={{
@@ -59,21 +64,21 @@ export function MobileNav() {
                       color={'#fff'}
                       content={'showbox'}
                       onClick={switchShowboxOptionsDisplay}
-                      onBlur={hideShowboxOptionsDisplay}
+                      onBlur={hideOptionsDisplay}
                   />
                   <OptionList display={showbox} options={<>
-                      <OptionButton color={'#fff'} content={'list with filters'} />
-                      <OptionButton color={'#fff'} content={'movie tinder'} />
-                      <OptionButton color={'#fff'} content={'calculator'} />
-                      <OptionButton color={'#fff'} content={'organizer app'} />
-                      <OptionButton color={'#fff'} content={'chat app'} />
+                      <OptionButton color={'#fff'} content={'list with filters'} width={'max-content'} onClick={hideOptionsDisplay}/>
+                      <OptionButton color={'#fff'} content={'movie tinder'} onClick={hideOptionsDisplay}/>
+                      <OptionButton color={'#fff'} content={'calculator'} onClick={hideOptionsDisplay}/>
+                      <OptionButton color={'#fff'} content={'organizer app'} width={'max-content'} onClick={hideOptionsDisplay}/>
+                      <OptionButton color={'#fff'} content={'chat app'} onClick={hideOptionsDisplay}/>
                   </>} />
             </Flex>                  
 
-             <OptionButton color={'#fff'} content={'about me'} onClick={hideShowboxOptionsDisplay}/>
-             <OptionButton color={'#fff'} content={'my tech'} onClick={hideShowboxOptionsDisplay}/>
-             <OptionButton color={'#fff'} content={'my interests'} onClick={hideShowboxOptionsDisplay}/>
-             <OptionButton color={'#fff'} content={'contact'} onClick={hideShowboxOptionsDisplay}/>          
+             <OptionButton color={'#fff'} content={'about me'} onClick={hideOptionsDisplay}/>
+             <OptionButton color={'#fff'} content={'my tech'} onClick={hideOptionsDisplay}/>
+             <OptionButton color={'#fff'} content={'my interests'} onClick={hideOptionsDisplay}/>
+             <OptionButton color={'#fff'} content={'contact'} onClick={hideOptionsDisplay}/>          
           </Flex>
           
           <Flex sx={{
