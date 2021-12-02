@@ -27,6 +27,14 @@ export function MobileNav() {
         setOpen(false);
         setSlideMenu('100%');
   };
+
+      const hideOptionsDisplayShowbox = () => {
+        setOpen(false);
+        setSlideMenu('100%');
+          setTimeout(() => {
+             setShowbox('none');
+            }, 1400);
+  };
   
 
   return (     
@@ -52,22 +60,19 @@ export function MobileNav() {
 
             <Flex sx={{
               flexDirection: 'column',
-              backgroundColor: "black"
               }}>
                   <OptionButton
                       color={'#fff'}
                       content={'showbox'}
-                      onClick={switchShowboxOptionsDisplay}
-            onBlur={hideOptionsDisplay}
-            
+                      onClick={switchShowboxOptionsDisplay}            
                   />
                   <OptionList display={showbox} options={<>
-                      <OptionButton color={'#fff'} content={'list'} width={'max-content'} onClick={hideOptionsDisplay}/>
-                      <OptionButton color={'#fff'} content={'movies'} onClick={hideOptionsDisplay}/>
-                      <OptionButton color={'#fff'} content={'calculator'} onClick={hideOptionsDisplay} />
-                      <OptionButton color={'#fff'} content={'weather'} onClick={hideOptionsDisplay}/>
-                      <OptionButton color={'#fff'} content={'organizer'} width={'max-content'} onClick={hideOptionsDisplay}/>
-                      <OptionButton color={'#fff'} content={'chat'} onClick={hideOptionsDisplay}/>
+                      <OptionButton color={'#fff'} content={'list'} width={'max-content'} onClick={hideOptionsDisplayShowbox}/>
+                      <OptionButton color={'#fff'} content={'movies'} onClick={hideOptionsDisplayShowbox}/>
+                      <OptionButton color={'#fff'} content={'calculator'} onClick={hideOptionsDisplayShowbox} />
+                      <OptionButton color={'#fff'} content={'weather'} onClick={hideOptionsDisplayShowbox}/>
+                      <OptionButton color={'#fff'} content={'organizer'} width={'max-content'} onClick={hideOptionsDisplayShowbox}/>
+                      <OptionButton color={'#fff'} content={'chat'} onClick={hideOptionsDisplayShowbox}/>
                   </>} />
             </Flex>                  
 

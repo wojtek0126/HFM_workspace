@@ -6,16 +6,27 @@ import OptionButton from "./atoms/OptionButton";
 import OptionList from "./OptionList";
 
 export function Nav() {
-    const [slideMenu, setSlideMenu] = useState('-243px');
+  const [slideMenu, setSlideMenu] = useState('-243px');
+  const [cooldown, setCoeoldown] = useState(false);
 
 
-    const switchShowboxOptionsDisplay = () => {
-        if (slideMenu === '-243px') {         
+  const switchShowboxOptionsDisplay = () => {
+    if (cooldown === false) {
+          if (slideMenu === '-243px') {         
             setSlideMenu('65px');
+            setCoeoldown(true);
+            setTimeout(() => {
+              setCoeoldown(false);
+            }, 1000);
         }
-        else {
+          else {
             setSlideMenu('-243px');
-        };
+            setCoeoldown(true);
+                setTimeout(() => {
+              setCoeoldown(false);
+            }, 1000);
+          }
+      }      
     };
 
     const hideShowboxOptionsDisplay = () => {        
