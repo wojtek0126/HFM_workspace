@@ -7,17 +7,12 @@ import OptionList from "./OptionList";
 
 export function Nav() {
   const [slideMenu, setSlideMenu] = useState('-258px');
-    // const [slideMenuOpa, setSlideMenuOpa] = useState('0');
-
   const [cooldown, setCoeoldown] = useState(false);
 
 
   const switchShowboxOptionsDisplay = () => {
     if (cooldown === false) {
-      if (slideMenu === '-258px') {
-        // setTimeout(() => {
-        //   setSlideMenuOpa('1');
-        //  }, 200);
+      if (slideMenu === '-258px') {     
         setSlideMenu('50px');
             setCoeoldown(true);
             setTimeout(() => {
@@ -25,7 +20,6 @@ export function Nav() {
             }, 1000);
         }
       else {
-                    // setSlideMenuOpa('0');
 
             setSlideMenu('-258px');
             setCoeoldown(true);
@@ -48,7 +42,8 @@ export function Nav() {
         backgroundColor: '#000',
         color: '#fff',
         position: 'absolute',
-        top: '80px'        
+        top: '80px',
+        width: '100%'
       }}>
         <Flex id="options-wrapper" sx={{
         flexDirection: 'row',
@@ -56,16 +51,8 @@ export function Nav() {
         alignItems: 'center',
         backgroundColor: '#000',
         color: '#fff',
-                    marginRight: '40px'
-
-      }}>       
-         
-          {/* <Flex sx={{
-            position: 'relative',
-            flexDirection: 'row',
-            marginRight: '40px'
-          }}> */}
-
+        marginRight: '40px'
+      }}>  
             <Flex sx={{
               flexDirection: 'column',
               }}>
@@ -75,9 +62,7 @@ export function Nav() {
                       onClick={switchShowboxOptionsDisplay}
                   />
           <OptionList top={slideMenu}
-            // opacity={slideMenuOpa}
             display={'flex'}
-            // position={'unset'}
                       zIndex={'-1'} options={<>
                       <OptionButton color={'#fff'} content={'list'} onClick={switchShowboxOptionsDisplay} />
                       <OptionButton color={'#fff'} content={'movies'} onClick={switchShowboxOptionsDisplay} />
@@ -93,7 +78,6 @@ export function Nav() {
         <OptionButton color={'#fff'} content={'my interests'} onClick={hideShowboxOptionsDisplay} />
         <OptionButton color={'#fff'} content={'quiz'} onClick={hideShowboxOptionsDisplay}/>
              <OptionButton color={'#fff'} content={'contact'} onClick={hideShowboxOptionsDisplay}/>          
-          {/* </Flex>    */}
       
       </Flex>
 

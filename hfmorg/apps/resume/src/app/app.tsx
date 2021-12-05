@@ -1,14 +1,12 @@
 /** @jsxImportSource theme-ui */
 
-import { Route, Link } from 'react-router-dom';
 import Logo from './components/atoms/Logo';
 import Nav from './components/Nav';
 import { Container, Flex, ThemeProvider } from 'theme-ui';
 import { defaultTheme } from './themes/theme';
 import MobileNav from './components/MobileNav';
 import { useEffect, useState } from 'react';
-import ParticleBackground, { particleOptions } from './components/ParticleBackground';
-import Particles from 'react-tsparticles';
+import ParticleBackground from './components/ParticleBackground';
 
 
 export function App() {
@@ -30,30 +28,18 @@ const [width, setWidth] = useState(window.innerWidth);
         flexDirection: 'column',
     }}>
      
-      {/* <Flex id="header-container" sx={{
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        backgroundColor: '#000',
-        color: '#fff'
-      }}> */}
-                  {/* <ParticleBackground /> */}
+     
 
         <Logo text1={'my'} text2={'resume'} />         
         {width > breakPoint ? (<Nav />) : (<MobileNav />)}
-        {/* </Flex> */}
 
         <Flex id="showarea-container" sx={{
-          width: '100%',
-          // minHeight: '100vh',
-          // position: 'absolute',
+          width: '100%',        
           zIndex: '-2',
           top: '65px',
           backgroundColor: 'black'
         }}>
-           <ParticleBackground />
-           
-          
+           <ParticleBackground />          
         </Flex>
          
       </Container>
