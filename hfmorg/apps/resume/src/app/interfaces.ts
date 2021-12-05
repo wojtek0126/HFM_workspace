@@ -14,4 +14,6 @@ export interface ComponentsProps {
     top?: string;
     zIndex?: string;
     transition?: string;
+    position?: any;
+    opacity?: string;
 }

@@ -3,10 +3,10 @@
 import { Flex } from "theme-ui";
 import { ComponentsProps } from "../interfaces";
 
-export function OptionList({options, display = 'none', backgroundColor = '#000', top = '65px', zIndex = '1'}: ComponentsProps) {
+export function OptionList({opacity, options, display = 'none', backgroundColor = '#000', top = '65px', zIndex = '1', position = 'absolute'}: ComponentsProps) {
     return <div sx={{
         // padding: '30px',
-        position: 'absolute',
+        position: position,
         top: top,
         justifyContent: 'center',
         alignItems: 'center',
@@ -15,7 +15,8 @@ export function OptionList({options, display = 'none', backgroundColor = '#000',
         flexDirection: 'column',
         display: display,
         zIndex: zIndex,
-        transition: '1s'
+        transition: '1s',
+        opacity: opacity
         // width: '100%',
     }}>
         {options}

@@ -43,9 +43,15 @@ export function MobileNav() {
         alignItems: 'center',
         backgroundColor: 'black',
         color: '#fff',
-      }}>       
-         
-          <Flex sx={{              
+    }}>
+      <Flex id="header-container" sx={{
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        backgroundColor: '#000',
+        color: '#fff'
+      }}>
+      <Flex sx={{              
               transition: '2s',
               height: '600px',
               width: '100%',
@@ -67,18 +73,19 @@ export function MobileNav() {
                       onClick={switchShowboxOptionsDisplay}            
                   />
                   <OptionList display={showbox} options={<>
-                      <OptionButton color={'#fff'} content={'list'} width={'max-content'} onClick={hideOptionsDisplayShowbox}/>
+                      <OptionButton color={'#fff'} content={'list'}  onClick={hideOptionsDisplayShowbox}/>
                       <OptionButton color={'#fff'} content={'movies'} onClick={hideOptionsDisplayShowbox}/>
                       <OptionButton color={'#fff'} content={'calculator'} onClick={hideOptionsDisplayShowbox} />
                       <OptionButton color={'#fff'} content={'weather'} onClick={hideOptionsDisplayShowbox}/>
-                      <OptionButton color={'#fff'} content={'organizer'} width={'max-content'} onClick={hideOptionsDisplayShowbox}/>
+                      <OptionButton color={'#fff'} content={'organizer'} onClick={hideOptionsDisplayShowbox}/>
                       <OptionButton color={'#fff'} content={'chat'} onClick={hideOptionsDisplayShowbox}/>
                   </>} />
             </Flex>                  
 
              <OptionButton color={'#fff'} content={'about me'} onClick={hideOptionsDisplay}/>
              <OptionButton color={'#fff'} content={'my tech'} onClick={hideOptionsDisplay}/>
-             <OptionButton color={'#fff'} content={'my interests'} onClick={hideOptionsDisplay}/>
+          <OptionButton color={'#fff'} content={'my interests'} onClick={hideOptionsDisplay} />
+                    <OptionButton color={'#fff'} content={'quiz'} onClick={hideOptionsDisplay} />
              <OptionButton color={'#fff'} content={'contact'} onClick={hideOptionsDisplay}/>          
           </Flex>
           
@@ -88,6 +95,9 @@ export function MobileNav() {
               <Hamburger toggled={isOpen} toggle={setOpen} onToggle={switchShowMenuDisplay} />
           </Flex>
       
+      </Flex>
+         
+          
       </Flex>
   );
 }
