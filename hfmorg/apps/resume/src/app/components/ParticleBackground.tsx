@@ -9,7 +9,8 @@ export function ParticleBackground() {
              <Particles 
         style={
             {
-                position: 'absolute', top: '90px', zIndex: '0'
+                position: 'absolute', top: '90px',
+                //  zIndex: '0'
       
             }}
       id="tsparticles"

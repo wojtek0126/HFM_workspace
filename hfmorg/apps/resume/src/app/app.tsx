@@ -7,6 +7,7 @@ import { defaultTheme } from './themes/theme';
 import MobileNav from './components/MobileNav';
 import { useEffect, useState } from 'react';
 import ParticleBackground from './components/ParticleBackground';
+import MobileTester from './components/MobileTester';
 
 
 export function App() {
@@ -25,7 +26,7 @@ const [width, setWidth] = useState(window.innerWidth);
      <Container id="app-container" sx={{
         maxWidth: '100%',
         display: 'flex',
-        flexDirection: 'column',
+        flexDirection: 'column'       
     }}>
      
      
@@ -39,10 +40,11 @@ const [width, setWidth] = useState(window.innerWidth);
           top: '65px',
           backgroundColor: 'black'
         }}>
-           <ParticleBackground />          
+           {/* <ParticleBackground />           */}
         </Flex>
          
       </Container>
+      <MobileTester />
   </ThemeProvider>
 
 

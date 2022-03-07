@@ -9,11 +9,11 @@ export function Nav() {
   const [slideMenu, setSlideMenu] = useState('-258px');
   const [cooldown, setCoeoldown] = useState(false);
 
-
+ 
   const switchShowboxOptionsDisplay = () => {
     if (cooldown === false) {
       if (slideMenu === '-258px') {     
-        setSlideMenu('50px');
+        setSlideMenu('129px');
             setCoeoldown(true);
             setTimeout(() => {
               setCoeoldown(false);
@@ -41,9 +41,9 @@ export function Nav() {
         alignItems: 'center',
         backgroundColor: '#000',
         color: '#fff',
-        position: 'absolute',
-        top: '80px',
-        width: '100%'
+        // position: 'absolute',
+        // top: '80px',
+        width: '100%',
       }}>
         <Flex id="options-wrapper" sx={{
         flexDirection: 'row',
