@@ -2,11 +2,12 @@
 import { Button } from "theme-ui";
 import { ComponentsProps } from "../../interfaces";
 
-export function OptionButton({ content, color, onClick, onBlur, backgroundColor = 'transparent', width = '100px', transition = '1s' }: ComponentsProps) {
+export function OptionButton({ content, color, onClick, onBlur, backgroundColor = 'transparent', width = '100px', transition = '1s', zIndex, btnFocus = 'rgb(255, 228, 77)' }: ComponentsProps) {
 
 
     return <Button onClick={onClick} onBlur={onBlur} sx={{
-        miWwidth: 'auto',
+                miWwidth: 'auto',
+                zIndex: zIndex,
                 backgroundColor: backgroundColor,
                 cursor: 'pointer',
                 textAlign: 'center',
@@ -29,7 +30,7 @@ export function OptionButton({ content, color, onClick, onBlur, backgroundColor 
                        webkitBoxShadow: 'inset 8px 8px 24px 0px rgba(248, 248, 248, 1)',
                      mozBoxShadow: 'inset 8px 8px 24px 0px rgba(248, 248, 248, 1)',
                     boxShadow: 'inset 8px 10px 18px -17px rgba(255, 255, 255, 1)',
-                    color: 'rgb(255, 228, 77)',
+                    color: btnFocus
                 }
     }}>{content}</Button>
 }

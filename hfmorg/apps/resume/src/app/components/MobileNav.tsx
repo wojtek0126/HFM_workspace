@@ -10,6 +10,7 @@ import OptionList from "./OptionList";
 export function MobileNav() {
     const [isOpen, setOpen] = useState(false);
     const [showbox, setShowbox] = useState('none');
+    const [showboxColor, setShowboxColor] = useState('white')
     const [slideMenu, setSlideMenu] = useState('100%');
 
     const switchShowMenuDisplay = () => {
@@ -18,8 +19,14 @@ export function MobileNav() {
     };
 
     const switchShowboxOptionsDisplay = () => {
-        if (showbox === 'none') setShowbox('flex');
-        else setShowbox('none');
+        if (showbox === 'none') {          
+          setShowbox('flex');
+          setShowboxColor('green');
+        }
+        else {
+          setShowbox('none');
+          setShowboxColor('white');
+        }
     };
 
     const hideOptionsDisplay = () => {
@@ -43,6 +50,7 @@ export function MobileNav() {
         alignItems: 'center',
         backgroundColor: 'black',
         color: '#fff',
+        zIndex: 10
     }}>
       <Flex id="header-container" sx={{
         flexDirection: 'row',
@@ -68,7 +76,7 @@ export function MobileNav() {
               flexDirection: 'column',
               }}>
                   <OptionButton
-                      color={'#fff'}
+                      btnFocus={showboxColor}
                       content={'showbox'}
                       onClick={switchShowboxOptionsDisplay}            
                   />
@@ -85,7 +93,7 @@ export function MobileNav() {
              <OptionButton color={'#fff'} content={'about me'} onClick={hideOptionsDisplay}/>
              <OptionButton color={'#fff'} content={'my tech'} onClick={hideOptionsDisplay}/>
           <OptionButton color={'#fff'} content={'my interests'} onClick={hideOptionsDisplay} />
-                    <OptionButton color={'#fff'} content={'quiz'} onClick={hideOptionsDisplay} />
+                    {/* <OptionButton color={'#fff'} content={'quiz'} onClick={hideOptionsDisplay} /> */}
              <OptionButton color={'#fff'} content={'contact'} onClick={hideOptionsDisplay}/>          
           </Flex>
           

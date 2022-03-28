@@ -16,4 +16,5 @@ export interface ComponentsProps {
     transition?: string;
     position?: any;
     opacity?: string;
+    btnFocus?: string;
 }

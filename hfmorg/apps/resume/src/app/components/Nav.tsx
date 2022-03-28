@@ -40,9 +40,7 @@ export function Nav() {
         justifyContent: 'space-between',
         alignItems: 'center',
         backgroundColor: '#000',
-        color: '#fff',
-        // position: 'absolute',
-        // top: '80px',
+        color: '#fff',      
         width: '100%',
       }}>
         <Flex id="options-wrapper" sx={{
@@ -60,10 +58,11 @@ export function Nav() {
                       color={'#fff'}
                       content={'showbox'}
                       onClick={switchShowboxOptionsDisplay}
+                      zIndex={"8"}
                   />
           <OptionList top={slideMenu}
             display={'flex'}
-                      zIndex={'-1'} options={<>
+                      zIndex={'1'} options={<>
                       <OptionButton color={'#fff'} content={'list'} onClick={switchShowboxOptionsDisplay} />
                       <OptionButton color={'#fff'} content={'movies'} onClick={switchShowboxOptionsDisplay} />
                       <OptionButton color={'#fff'} content={'calculator'} onClick={switchShowboxOptionsDisplay} />
@@ -76,13 +75,12 @@ export function Nav() {
              <OptionButton color={'#fff'} content={'about me'} onClick={hideShowboxOptionsDisplay}/>
              <OptionButton color={'#fff'} content={'my tech'} onClick={hideShowboxOptionsDisplay}/>
         <OptionButton color={'#fff'} content={'my interests'} onClick={hideShowboxOptionsDisplay} />
-        <OptionButton color={'#fff'} content={'quiz'} onClick={hideShowboxOptionsDisplay}/>
+        {/* <OptionButton color={'#fff'} content={'quiz'} onClick={hideShowboxOptionsDisplay}/> */}
              <OptionButton color={'#fff'} content={'contact'} onClick={hideShowboxOptionsDisplay}/>          
       
       </Flex>
 
-      </Flex>
-     
+      </Flex>     
     
   );
 }

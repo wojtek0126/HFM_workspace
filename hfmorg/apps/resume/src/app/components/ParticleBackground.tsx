@@ -9,9 +9,8 @@ export function ParticleBackground() {
              <Particles 
         style={
             {
-                position: 'absolute', top: '90px',
-                //  zIndex: '0'
-      
+              position: 'absolute',
+              top: '90px'      
             }}
       id="tsparticles"
    
@@ -110,7 +109,6 @@ export const particleOptions: any = {
         "size": 40,
         "duration": 2,
         "opacity": 8,
-        // "speed": 3
       },
       "repulse": {
         "distance": 200,
