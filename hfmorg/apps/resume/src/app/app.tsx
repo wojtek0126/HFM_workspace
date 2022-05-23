@@ -27,7 +27,7 @@ const [width, setWidth] = useState(window.innerWidth);
      <Container id="app-container" sx={{
         maxWidth: '100%',
         display: 'flex',
-        flexDirection: 'column'       
+        flexDirection: 'column',
     }}>   
 
         <Logo text1={'my'}
@@ -39,7 +39,7 @@ const [width, setWidth] = useState(window.innerWidth);
         <Flex id="homepage-container" sx={{
           width: '100%',        
           zIndex: '0',        
-          flexDirection: 'column'
+          flexDirection: 'column',
         }}>
            <HomeCarousel />
            <HomeAbout />

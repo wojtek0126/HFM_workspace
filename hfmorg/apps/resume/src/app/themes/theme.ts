@@ -14,6 +14,7 @@ export const defaultTheme: Theme = {
     backgroundCard: '#000',
     colorAccept: 'green',
     colorReject: 'red',
-    colorBtnHover: '#fff'
+    colorBtnHover: '#fff',
+    colorBackgroundTextAbout: 'gold'
   },
 };
