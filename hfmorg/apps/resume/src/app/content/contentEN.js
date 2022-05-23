@@ -6,4 +6,4 @@ export const carouselText4 = "Cooperating with Azure Devops";
 
 
 export const aboutMeHeader = "About Me"
-export const aboutMeText = "Hi. My name is Wojtek. I am a tester with Programming skills. ";
+export const aboutMeText = "Hi. My name is Wojtek. I am a tester with programming skills. ";
